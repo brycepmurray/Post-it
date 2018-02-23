@@ -11,6 +11,10 @@ server.use(cors())
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
 
+server.use('*', (err, req, res, next) => {
+  res.send(err)
+})
+
 server.listen(port, () => {
   console.log('Server running on port', port)
 })
