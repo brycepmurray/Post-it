@@ -11,8 +11,10 @@ server.use(cors())
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
 
+
+
 server.use('*', (err, req, res, next) => {
-  res.send(err)
+  res.status(400).send(err)
 })
 
 server.listen(port, () => {
