@@ -9,10 +9,10 @@
     <div class="card-footer d-flex justify-content-between align-items-center">
       <!-- Need to wire in like/dislike icons into server -->
       <div>
-        <i class="like far fa-thumbs-up fa-2x">
+        <i class="like far fa-thumbs-up fa-2x" @click="addLike(post)">
           <span class="voteBtns">{{post.likes}}</span>
         </i>
-        <i class="dislike far fa-thumbs-down fa-2x">
+        <i class="dislike far fa-thumbs-down fa-2x" @click="dislike(post)">
           <span class="voteBtns">{{post.dislikes}}</span>
         </i>
       </div>
@@ -78,11 +78,22 @@
 </template>
 <script>
   export default {
+    data(){
+      return {
+        newLikeNum: 0
+      }
+    },
     components: {
 
     },
     props: ["post"],
     methods: {
+      addLike(post){
+        this.$store.dispatch('addLike', post)
+      },
+      dislike(post){
+        this.$store.dispatch('dislike', post)
+      },
       getUsers(user){
         this.$store.dispatch('getUsers', user)
       }

@@ -15,16 +15,7 @@ export default new vuex.Store({
   state: {
     //DUMMY DATA
     user: {},
-    posts: [{
-      "createdAt": "2018-02-23T23:18:02.415Z",
-      "_id": "5a90a683c0112e197c23478e",
-      "userId": "5a90a16cc0112e197c234788",
-      "title": "Find my parents",
-      "desc": "Help me find my biological parents, Jor-El is my father and my mother is Lara-El. They are on the planet Krypton",
-      "imgUrl": "https://vignette.wikia.nocookie.net/superman/images/f/f5/Krypton_-_Gods_and_Monsters.jpg",
-      "likes": 4,
-      "dislikes": 4,
-    }],
+    posts: [],
     comments: [],
   },
   mutations: {
@@ -33,6 +24,14 @@ export default new vuex.Store({
     },
     setUsers(state, payload) {
       state.user = payload
+    },
+    addLikes(state,payload){
+      payload = state.posts.find(post=>post._id == payload._id)
+      // state.posts = payload
+    },
+    dislikes(state,payload){
+      payload = state.posts.find(post=>post._id == payload._id)
+      // state.posts = payload
     }
   },
 
@@ -44,7 +43,6 @@ export default new vuex.Store({
       api.get('posts')
         .then(res => {
           commit('setPosts', res.data)
-          console.log(res.data)
         })
         .catch(err => {
           console.log(err)
@@ -58,6 +56,24 @@ export default new vuex.Store({
         .catch(err => {
           console.log(err)
         })
+    },
+    addLike({commit, dispatch}, payload){
+      api.put('posts/' + payload._id, {likes:++payload.likes})
+      .then(res =>{
+        commit('addLikes', res.data)
+      })
+      .catch(err =>{
+        console.log(err)
+      })
+    },
+    dislike({commit, dispatch}, payload){
+      api.put('posts/' + payload._id, {dislikes:++payload.dislikes})
+      .then(res =>{
+        commit('dislikes', res.data)
+      })
+      .catch(err =>{
+        console.log(err)
+      })
     }
   }
 })
