@@ -7,35 +7,34 @@ var schemaName = "Post"
 var schema = new Schema({
   title: {
     type: String,
-    required: true
+    required: false
   },
   desc: {
     type: String,
-    required: true
+    required: false
   },
   createdAt: {
     type: String,
-    required: true,
     default: moment().format('MMMM Do YYYY, h:mm:ss a')
   },
   imgUrl: {
     type: String,
-    required: true,
+    required: false,
     default: 'http://placehold.it/200X200'
   },
   likes: {
     type: Number,
-    required: true,
+    default: 0,
     min: 0
   },
   dislikes: {
     type: Number,
-    required: true,
+    default: 0,
     min: 0
   },
   userId: {
     type: ObjectId,
-    required: true,
+    required: false,
     ref: 'User'
   }
 })

@@ -14,7 +14,7 @@ vue.use(vuex)
 export default new vuex.Store({
   state: {
     //DUMMY DATA
-    user: {},
+    users: [],
     posts: [],
     comments: [],
   },
@@ -29,7 +29,7 @@ export default new vuex.Store({
       state.comments = payload
     },
     setUsers(state, payload) {
-      state.user = payload
+      state.users = payload
     },
     addLikes(state, payload) {
       payload = state.posts.find(post => post._id == payload._id)
@@ -44,15 +44,10 @@ export default new vuex.Store({
   actions: {
     addPost({ commit, dispatch }, payload) {
       console.log("this is our object:", payload)
-      api.post('/users/' + payload.userId + '/posts')
-        .then(res => {
-          console.log("how about here?", res)
-          commit('addPost', res.data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
+      api.post('posts')
+          console.log("how about here?", payload)
+          commit('addPost', payload)
+        },
     getPosts({ commit, dispatch }, payload) {
       api.get('posts')
         .then(res => {

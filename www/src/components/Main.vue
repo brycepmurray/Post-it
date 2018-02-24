@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <Navbar></Navbar>
-    <div class="container-fluid">
+    <div class="container-fluid fillPage">
       <div class="row justify-content-around">
         <Post v-for="post in orderedPosts" :post="post"></Post>
       </div>
@@ -100,9 +100,10 @@
     background: linear-gradient(rgba(0, 255, 0, 0.5), rgba(0, 255, 0, 0.5)), url("../assets/images/numberbg.jpg");
     background-size: contain;
     background-attachment: fixed;
-    min-height: 100vh;
   }
-
+.fillPage{
+    min-height: 100vh;
+}
   .addPost {
     color: aliceblue;
     opacity: .8;
