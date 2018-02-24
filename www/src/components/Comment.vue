@@ -52,8 +52,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" @click="addReply">Add Comment</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success" @click="addReply">Add Reply</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
               </div>
             </div>
@@ -67,9 +67,6 @@
     export default {
         name: 'Comment',
         computed: {
-            comments() {
-                return this.$store.state.comments
-            },
             // activeUserId() {
             //     return this.$store.state.user._id
             // }
@@ -90,7 +87,7 @@
                 this.$store.dispatch("deleteComment", this.comment_id)
             },
             addReply() {
-                this.$store.dispatch("addReply", newDescription)
+                this.$store.dispatch("addReply", this.newDescription)
             }
 
         }

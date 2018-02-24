@@ -35,6 +35,9 @@ export default new vuex.Store({
     dislikes(state,payload){
       payload = state.posts.find(post=>post._id == payload._id)
       // state.posts = payload
+    },
+    setCommentsByPost(state, payload) {
+      state.comments = payload
     }
   },
 
@@ -86,6 +89,15 @@ export default new vuex.Store({
       .catch(err =>{
         console.log(err)
       })
-    }
+    },
+    getCommentsByPost({commit, dispatch}, post) {
+      api.get(`posts/${post._id}/comments`)
+      .then(res => {
+        commit('setCommentsByPost', res.data)
+      })
+      .catch(err =>{
+        console.log(err)
+      })
+    },
   }
 })
