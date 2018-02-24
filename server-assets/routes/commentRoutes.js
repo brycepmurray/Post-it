@@ -43,7 +43,9 @@ function CreateComment(req, res, next) {
 function DeleteComment(req, res, next) {
   PostComment.findByIdAndRemove(req.params.id)
     .then(comment => {
-      return res.send('Sucessfully deleted a comment')
+      return res.send({
+        message: 'Sucessfully deleted a comment'
+      })
     })
     .catch(next)
 }
@@ -59,9 +61,7 @@ function UpdateComment(req, res, next) {
       })
     })
     .catch(next)
-
 }
-
 
 module.exports = {
   router

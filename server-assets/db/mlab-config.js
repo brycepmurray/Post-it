@@ -1,5 +1,3 @@
-mongodb://<dbuser>:<dbpassword>@ds044907.mlab.com:44907/post_it
-
 var mongoose = require('mongoose')
 var user = 'students'
 var pswd = 'test'

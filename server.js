@@ -21,7 +21,6 @@ server.use('/api', postRoutes.router)
 server.use('/api', commentRoutes.router)
 
 server.use('*', (err, req, res, next) => {
-  // console.log('error',err)
   res.status(400).send(err)
 })
 
