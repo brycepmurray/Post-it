@@ -2,16 +2,22 @@
   <div class="body">
     <Navbar></Navbar>
     <div class="container-fluid">
-      <div class="row card-deck justify-content-around">
+      <div v-for="post in posts" class="row card-deck justify-content-around">
         <div class="col-lg-3 col-sm-12 card p-2">
-          <h4>Title:</h4>
-          <p>By: Insert Author | <i>Date Posted: </i></p>
-          <img class="card-img-top" src="http://placehold.it/200X200" alt="">
+          <h4>{{post.title}}</h4>
+          <p>By: INSERT AUTHOR NAME |
+            <i>Date Posted: {{post.createdAt}}</i>
+          </p>
+          <img class="card-img-top" :src="post.imgUrl">
           <div class="card-footer d-flex justify-content-between align-items-center">
             <!-- Need to wire in like/dislike icons into server -->
             <div>
-                <i class="like far fa-thumbs-up fa-2x"><span class="voteBtns">20</span></i>
-              <i class="dislike far fa-thumbs-down fa-2x"><span class="voteBtns">20</span></i>
+              <i class="like far fa-thumbs-up fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
+              <i class="dislike far fa-thumbs-down fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
             </div>
             <i class="commentBtn far fa-comment-alt fa-2x" data-toggle="modal" data-target="#commentModal"></i>
             <!-- COMMENT MODAL -->
@@ -37,7 +43,8 @@
                   </div>
                 </div>
               </div>
-              <!-- end comment modal -->
+            </div>
+            <!-- end comment modal -->
           </div>
           <div class="card-body">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora in adipisci illum incidunt perferendis voluptates
@@ -51,13 +58,19 @@
         </div>
         <div class="col-lg-3 col-sm-12 card p-2 ">
           <h4>Title:</h4>
-          <p>By: Insert Author | <i>Date Posted: </i></p>
+          <p>By: Insert Author |
+            <i>Date Posted: </i>
+          </p>
           <img class="card-img-top" src="http://placehold.it/200X200" alt="">
           <div class="card-footer d-flex justify-content-between align-items-center">
             <!-- Need to wire in like/dislike icons into server -->
             <div>
-                <i class="like far fa-thumbs-up fa-2x"><span class="voteBtns">20</span></i>
-              <i class="dislike far fa-thumbs-down fa-2x"><span class="voteBtns">20</span></i>
+              <i class="like far fa-thumbs-up fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
+              <i class="dislike far fa-thumbs-down fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
             </div>
             <i class="commentBtn far fa-comment-alt fa-2x" data-toggle="modal" data-target="#commentModal"></i>
             <!-- COMMENT MODAL -->
@@ -83,7 +96,8 @@
                   </div>
                 </div>
               </div>
-              <!-- end comment modal -->
+            </div>
+            <!-- end comment modal -->
           </div>
           <div class="card-body">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora in adipisci illum incidunt perferendis voluptates
@@ -97,13 +111,19 @@
         </div>
         <div class="col-lg-3 col-sm-12 card p-2 ">
           <h4>Title:</h4>
-          <p>By: Insert Author | <i>Date Posted: </i></p>
+          <p>By: Insert Author |
+            <i>Date Posted: </i>
+          </p>
           <img class="card-img-top" src="http://placehold.it/200X200" alt="">
           <div class="card-footer d-flex justify-content-between align-items-center">
             <!-- Need to wire in like/dislike icons into server -->
             <div>
-                <i class="like far fa-thumbs-up fa-2x"><span class="voteBtns">20</span></i>
-              <i class="dislike far fa-thumbs-down fa-2x"><span class="voteBtns">20</span></i>
+              <i class="like far fa-thumbs-up fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
+              <i class="dislike far fa-thumbs-down fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
             </div>
             <i class="commentBtn far fa-comment-alt fa-2x" data-toggle="modal" data-target="#commentModal"></i>
             <!-- COMMENT MODAL -->
@@ -129,7 +149,8 @@
                   </div>
                 </div>
               </div>
-              <!-- end comment modal -->
+            </div>
+            <!-- end comment modal -->
           </div>
           <div class="card-body">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora in adipisci illum incidunt perferendis voluptates
@@ -145,13 +166,19 @@
       <div class="row card-deck justify-content-around">
         <div class="col-lg-3 col-sm-12 card p-2">
           <h4>Title:</h4>
-          <p>By: Insert Author | <i>Date Posted: </i></p>
+          <p>By: Insert Author |
+            <i>Date Posted: </i>
+          </p>
           <img class="card-img-top" src="http://placehold.it/200X200" alt="">
           <div class="card-footer d-flex justify-content-between align-items-center">
             <!-- Need to wire in like/dislike icons into server -->
             <div>
-                <i class="like far fa-thumbs-up fa-2x"><span class="voteBtns">20</span></i>
-              <i class="dislike far fa-thumbs-down fa-2x"><span class="voteBtns">20</span></i>
+              <i class="like far fa-thumbs-up fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
+              <i class="dislike far fa-thumbs-down fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
             </div>
             <i class="commentBtn far fa-comment-alt fa-2x" data-toggle="modal" data-target="#commentModal"></i>
             <!-- COMMENT MODAL -->
@@ -177,7 +204,8 @@
                   </div>
                 </div>
               </div>
-              <!-- end comment modal -->
+            </div>
+            <!-- end comment modal -->
           </div>
           <div class="card-body">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora in adipisci illum incidunt perferendis voluptates
@@ -191,13 +219,19 @@
         </div>
         <div class="col-lg-3 col-sm-12 card p-2 ">
           <h4>Title:</h4>
-          <p>By: Insert Author | <i>Date Posted: </i></p>
+          <p>By: Insert Author |
+            <i>Date Posted: </i>
+          </p>
           <img class="card-img-top" src="http://placehold.it/200X200" alt="">
           <div class="card-footer d-flex justify-content-between align-items-center">
             <!-- Need to wire in like/dislike icons into server -->
             <div>
-                <i class="like far fa-thumbs-up fa-2x"><span class="voteBtns">20</span></i>
-              <i class="dislike far fa-thumbs-down fa-2x"><span class="voteBtns">20</span></i>
+              <i class="like far fa-thumbs-up fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
+              <i class="dislike far fa-thumbs-down fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
             </div>
             <i class="commentBtn far fa-comment-alt fa-2x" data-toggle="modal" data-target="#commentModal"></i>
             <!-- COMMENT MODAL -->
@@ -223,7 +257,8 @@
                   </div>
                 </div>
               </div>
-              <!-- end comment modal -->
+            </div>
+            <!-- end comment modal -->
           </div>
           <div class="card-body">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora in adipisci illum incidunt perferendis voluptates
@@ -237,13 +272,19 @@
         </div>
         <div class="col-lg-3 col-sm-12 card p-2 ">
           <h4>Title:</h4>
-          <p>By: Insert Author | <i>Date Posted: </i></p>
+          <p>By: Insert Author |
+            <i>Date Posted: </i>
+          </p>
           <img class="card-img-top" src="http://placehold.it/200X200" alt="">
           <div class="card-footer d-flex justify-content-between align-items-center">
             <!-- Need to wire in like/dislike icons into server -->
             <div>
-                <i class="like far fa-thumbs-up fa-2x"><span class="voteBtns">20</span></i>
-              <i class="dislike far fa-thumbs-down fa-2x"><span class="voteBtns">20</span></i>
+              <i class="like far fa-thumbs-up fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
+              <i class="dislike far fa-thumbs-down fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
             </div>
             <i class="commentBtn far fa-comment-alt fa-2x" data-toggle="modal" data-target="#commentModal"></i>
             <!-- COMMENT MODAL -->
@@ -269,7 +310,8 @@
                   </div>
                 </div>
               </div>
-              <!-- end comment modal -->
+            </div>
+            <!-- end comment modal -->
           </div>
           <div class="card-body">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora in adipisci illum incidunt perferendis voluptates
@@ -285,13 +327,19 @@
       <div class="row card-deck justify-content-around">
         <div class="col-lg-3 col-sm-12 card p-2">
           <h4>Title:</h4>
-          <p>By: Insert Author | <i>Date Posted: </i></p>
+          <p>By: Insert Author |
+            <i>Date Posted: </i>
+          </p>
           <img class="card-img-top" src="http://placehold.it/200X200" alt="">
           <div class="card-footer d-flex justify-content-between align-items-center">
             <!-- Need to wire in like/dislike icons into server -->
             <div>
-                <i class="like far fa-thumbs-up fa-2x"><span class="voteBtns">20</span></i>
-              <i class="dislike far fa-thumbs-down fa-2x"><span class="voteBtns">20</span></i>
+              <i class="like far fa-thumbs-up fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
+              <i class="dislike far fa-thumbs-down fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
             </div>
             <i class="commentBtn far fa-comment-alt fa-2x" data-toggle="modal" data-target="#commentModal"></i>
             <!-- COMMENT MODAL -->
@@ -317,7 +365,8 @@
                   </div>
                 </div>
               </div>
-              <!-- end comment modal -->
+            </div>
+            <!-- end comment modal -->
           </div>
           <div class="card-body">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora in adipisci illum incidunt perferendis voluptates
@@ -331,13 +380,19 @@
         </div>
         <div class="col-lg-3 col-sm-12 card p-2 ">
           <h4>Title:</h4>
-          <p>By: Insert Author | <i>Date Posted: </i></p>
+          <p>By: Insert Author |
+            <i>Date Posted: </i>
+          </p>
           <img class="card-img-top" src="http://placehold.it/200X200" alt="">
           <div class="card-footer d-flex justify-content-between align-items-center">
             <!-- Need to wire in like/dislike icons into server -->
             <div>
-                <i class="like far fa-thumbs-up fa-2x"><span class="voteBtns">20</span></i>
-              <i class="dislike far fa-thumbs-down fa-2x"><span class="voteBtns">20</span></i>
+              <i class="like far fa-thumbs-up fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
+              <i class="dislike far fa-thumbs-down fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
             </div>
             <i class="commentBtn far fa-comment-alt fa-2x" data-toggle="modal" data-target="#commentModal"></i>
             <!-- COMMENT MODAL -->
@@ -363,7 +418,8 @@
                   </div>
                 </div>
               </div>
-              <!-- end comment modal -->
+            </div>
+            <!-- end comment modal -->
           </div>
           <div class="card-body">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora in adipisci illum incidunt perferendis voluptates
@@ -377,13 +433,19 @@
         </div>
         <div class="col-lg-3 col-sm-12 card p-2 ">
           <h4>Title:</h4>
-          <p>By: Insert Author | <i>Date Posted: </i></p>
+          <p>By: Insert Author |
+            <i>Date Posted: </i>
+          </p>
           <img class="card-img-top" src="http://placehold.it/200X200" alt="">
           <div class="card-footer d-flex justify-content-between align-items-center">
             <!-- Need to wire in like/dislike icons into server -->
             <div>
-                <i class="like far fa-thumbs-up fa-2x"><span class="voteBtns">20</span></i>
-              <i class="dislike far fa-thumbs-down fa-2x"><span class="voteBtns">20</span></i>
+              <i class="like far fa-thumbs-up fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
+              <i class="dislike far fa-thumbs-down fa-2x">
+                <span class="voteBtns">20</span>
+              </i>
             </div>
             <i class="commentBtn far fa-comment-alt fa-2x" data-toggle="modal" data-target="#commentModal"></i>
             <!-- COMMENT MODAL -->
@@ -409,7 +471,8 @@
                   </div>
                 </div>
               </div>
-              <!-- end comment modal -->
+            </div>
+            <!-- end comment modal -->
           </div>
           <div class="card-body">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora in adipisci illum incidunt perferendis voluptates
@@ -424,7 +487,9 @@
       </div>
       <div class="row flex-row-reverse">
         <div class="col-lg-2 col-sm-2 addPostCol">
-          <button class="btn btn-dark addPost" type="submit"><i class="fas fa-plus fa-4x"></i></button>
+          <button class="btn btn-dark addPost" type="submit">
+            <i class="fas fa-plus fa-4x"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -432,6 +497,30 @@
 </template>
 
 <script>
+  import Navbar from './Navbar.vue'
+  export default {
+    components: { Navbar },
+    methods: {
+    getPosts(user){
+      this.$store.dispatch('getPosts', user)
+    },
+    addPost(){
+      this.$store.dispatch('addPost', this.newPostData)
+    },
+    
+    },
+    computed: {
+      users(){
+        return this.$store.state.users
+      },
+      posts() {
+        return this.$store.state.posts
+      },
+      comments(){
+        return this.$store.state.comments
+      }
+    }
+  }
     import Navbar from './Navbar.vue'
     import Post from './Post.vue'
     import Comment from './Comment.vue'

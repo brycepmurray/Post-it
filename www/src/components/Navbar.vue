@@ -2,8 +2,10 @@
   <div class="container-fluid body">
     <div class="row d-flex justify-content-between navBar">
       <div class="col-lg-6 col-sm-12 logo">
-        <img class="resizeLogo" src="../assets/images/IT-logo.png"> 
-        <span class="title">Post-<b>IT</b></span>
+        <img class="resizeLogo" src="../assets/images/IT-logo.png">
+        <span class="title">Post-
+          <b>IT</b>
+        </span>
       </div>
       <div class="col-lg-6 col-sm-12 profileInfo">
         <button type="button" class="btn btn-dark" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Sign In" data-content='<form action="submit"><input type=“text” name=“email” placeholder=email id=“”><input type=“text” name=“password” placeholder=password id=“”></form>'>
