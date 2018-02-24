@@ -47,7 +47,7 @@
     </div>
     <div class="card-footer d-flex justify-content-between">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#showCommentsModal">
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#showCommentsModal" @click="getCommentsByPost">
         Show Comments
       </button>
 
@@ -82,34 +82,35 @@
         data() {
             return {
 
-            }
-        },
-        components: {
-            Comment
-        },
-        props: ["post"],
-        methods: {
-            addLike(post) {
-                this.$store.dispatch('addLike', post)
-            },
-            dislike(post) {
-                this.$store.dispatch('dislike', post)
-            },
-            getUsers(user) {
-                this.$store.dispatch('getUsers', user)
-            }
-        },
-        computed: {
-            user() {
-                return this.$store.state.user
-            },
-            comments() {
-                var allComments = this.$store.state.comments
-                var postComments = allComments.filter(comment => comment.postId == this.post._id)
-                return postComments
-            }
-        }
+      }
+    },
+    components: {
+      Comment
+    },
+    props: ["post"],
+    methods: {
+      addLike(post){
+        this.$store.dispatch('addLike', post)
+      },
+      dislike(post){
+        this.$store.dispatch('dislike', post)
+      },
+      getUsers(user){
+        this.$store.dispatch('getUsers', user)
+      },
+      getCommentsByPost() {
+        this.$store.dispatch('getCommentsByPost', this.post)
+      }
+    },
+    computed: {
+      users() {
+        return this.$store.state.user
+      },
+      comments() {
+        return this.$store.state.comments
+      }
     }
+  }
 </script>
 <style>
     .card {
@@ -177,6 +178,6 @@
     }
     
     textarea {
-        width: 100%
+        width: 100%;
     }
 </style>

@@ -109,11 +109,11 @@
       posts() {
         return this.$store.state.posts
       },
-      comments() {
-        return this.$store.state.comments
-      },
-      orderedPosts: function () {
-        var orderPosts = _.orderBy(this.posts, ['likes', 'dislikes'], ['asc', 'desc'])
+      // comments() {
+      //   return this.$store.state.comments
+      // },
+      orderedPosts() {
+        var orderPosts = _.orderBy(this.posts, 'likes')
         return orderPosts.reverse()
       }
     }
