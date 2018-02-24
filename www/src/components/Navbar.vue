@@ -6,10 +6,38 @@
         <span class="title">Post-<b>IT</b></span>
       </div>
       <div class="col-lg-6 col-sm-12 profileInfo">
-        <button type="button" class="btn btn-dark" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Sign In" data-content='<form action="submit"><input type=“text” name=“username” placeholder=username id=“”><input type=“text” name=“password” placeholder=password id=“”></form>'>
+        <button type="button" class="btn btn-dark" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Sign In" data-content='<form action="submit"><input type=“text” name=“email” placeholder=email id=“”><input type=“text” name=“password” placeholder=password id=“”></form>'>
   Sign In
 </button>
-        
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">
+    Register User
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModal">Register</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <form action="submit">
+             <input type=“text” name=“name” placeholder=name id=“”>
+             <input type=“text” name=“email” placeholder=bob@bob.com id=“”>
+             <input type=“text” name=“password” placeholder=password id=“”>
+             <input type=“text” name=“photoUrl” placeholder=ImageURL id=“”>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success">Register</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
       </div>
     </div>
   </div>
