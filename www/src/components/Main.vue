@@ -1,7 +1,15 @@
 <template>
   <div class="body">
     <Navbar></Navbar>
-    <div class="container-fluid">
+
+    <h1>{{activeUser.name}}</h1>
+
+    <div class="users">
+      <div class="user" v-for="user in users" @click="setActiveUser(user)">
+        <p>{{user.name}}</p>
+      </div>
+    </div>
+    <div class="container-fluid fillPage">
       <div class="row justify-content-around">
         <Post v-for="post in orderedPosts" :post="post"></Post>
       </div>
@@ -21,28 +29,26 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form action="submit">
+                  <form @submit.prevent="addPost">
                     <div class="form-row addPostForm">
                       <div class="form-group col">
                         <label for="postTitle">Title</label>
-                        <input class="form-control" type="text" id="postTitle" placeholder="Post Title">
+                        <input class="form-control" type="text" id="postTitle" placeholder="Post Title" v-model="newPostData.title">
                       </div>
                       <div class="form-group col">
                         <label for="image">URL</label>
-                        <input class="form-control" type="text" id="image" placeholder="Image URL">
+                        <input class="form-control" type="text" id="image" placeholder="Image URL" v-model="newPostData.imgUrl">
                       </div>
                     </div>
                     <div class="form-row addPostForm">
                       <div class="form-group col">
                         <label for="postDesc">Description</label>
-                        <textarea class="form-control" type="textarea" id="postDesc" placeholder="Post Description" rows="3"></textarea>
+                        <textarea class="form-control" type="textarea" id="postDesc" placeholder="Post Description" rows="3" v-model="newPostData.desc"></textarea>
                       </div>
                     </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Post</button>
                   </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-success">Post</button>
                 </div>
               </div>
             </div>
@@ -50,6 +56,12 @@
         </div>
       </div>
     </div>
+
+
+
+
+
+
   </div>
 </template>
 
@@ -58,6 +70,17 @@
   import Post from './Post.vue'
   import lodash from 'lodash'
   export default {
+    mounted() {
+      this.$store.dispatch('getUsers')
+    },
+    data() {
+      return {
+        newPostData: {
+          userId: "5a90a16cc0112e197c234788",
+          userName: ""
+        }
+      }
+    },
     components: {
       Navbar,
       Post
@@ -66,11 +89,20 @@
       getPosts(user) {
         this.$store.dispatch('getPosts', user)
       },
-      addPost() {
+      addPost(newPostData) {
+        newPostData.userId = this.activeUser._id
+        newPostData.userName = this.activeUser.name
         this.$store.dispatch('addPost', this.newPostData)
+        console.log("this is before the index:", this.newPostData)
       },
+      setActiveUser(user) {
+        this.$store.dispatch('setUser', user)
+      }
     },
     computed: {
+      activeUser() {
+        return this.$store.state.user
+      },
       users() {
         return this.$store.state.users
       },
@@ -96,6 +128,10 @@
     background-attachment: fixed;
   }
 
+  .fillPage {
+    min-height: 100vh;
+  }
+
   .addPost {
     color: aliceblue;
     opacity: .8;
@@ -115,6 +151,7 @@
     padding-bottom: 1rem;
     padding-top: 1rem;
   }
+
   .addPostForm {
     text-align: left
   }
