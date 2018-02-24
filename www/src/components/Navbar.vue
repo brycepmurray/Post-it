@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid body">
     <div class="row d-flex justify-content-between navBar">
       <div class="col-lg-6 col-sm-12 logo">
         <img class="resizeLogo" src="../assets/images/IT-logo.png">
@@ -83,7 +83,7 @@
         align-self: center;
     }
     
-    * {
+    .body {
         background: rgb(220, 236, 250)
     }
 </style>
