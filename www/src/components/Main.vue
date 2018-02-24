@@ -52,46 +52,52 @@
 </template>
 
 <script>
-  import Navbar from './Navbar.vue'
-  import Post from './Post.vue'
-  import lodash from 'lodash'
-  export default {
-    data(){
-      return {
-        newPostData: {
-          userId: "5a90a16cc0112e197c234788"
+    import Navbar from './Navbar.vue'
+    import Post from './Post.vue'
+    import lodash from 'lodash'
+    export default {
+        data() {
+            return {
+                newPostData: {
+                    userId: "5a90a16cc0112e197c234788",
+                    userName: ""
+                }
+            }
+        },
+        components: {
+            Navbar,
+            Post
+        },
+        methods: {
+            getPosts(user) {
+                this.$store.dispatch('getPosts', user)
+            },
+            addPost(newPostData) {
+                newPostData.userId = this.activeUser._id
+                newPostData.userName = this.activeUser.name
+                this.$store.dispatch('addPost', this.newPostData)
+                console.log("this is before the index:", this.newPostData)
+            },
+        },
+        computed: {
+            activeUser() {
+                return this.$store.state.activeUser
+            },
+            users() {
+                return this.$store.state.users
+            },
+            posts() {
+                return this.$store.state.posts
+            },
+            comments() {
+                return this.$store.state.comments
+            },
+            orderedPosts: function() {
+                var orderPosts = _.orderBy(this.posts, 'likes')
+                return orderPosts.reverse()
+            }
         }
-      }
-    },
-    components: {
-      Navbar,
-      Post
-    },
-    methods: {
-      getPosts(user) {
-        this.$store.dispatch('getPosts', user)
-      },
-      addPost(newPostData) {
-        this.$store.dispatch('addPost', this.newPostData)
-        console.log("this is before the index:", this.newPostData)
-      },
-    },
-    computed: {
-      users() {
-        return this.$store.state.users
-      },
-      posts() {
-        return this.$store.state.posts
-      },
-      comments() {
-        return this.$store.state.comments
-      },
-      orderedPosts: function () {
-        var orderPosts = _.orderBy(this.posts, 'likes')
-        return orderPosts.reverse()
-      }
     }
-  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
