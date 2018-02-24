@@ -25,6 +25,9 @@ export default new vuex.Store({
     addPost(state, payload) {
       state.posts = payload
     },
+    setComments(state, payload) {
+      state.comments = payload
+    },
     setUsers(state, payload) {
       state.user = payload
     },
@@ -54,6 +57,15 @@ export default new vuex.Store({
       api.get('posts')
         .then(res => {
           commit('setPosts', res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    getComments({ commit, dispatch }, payload) {
+      api.get('comments')
+        .then(res => {
+          commit('setComments', res.data)
         })
         .catch(err => {
           console.log(err)

@@ -54,7 +54,6 @@
 <script>
   import Navbar from './Navbar.vue'
   import Post from './Post.vue'
-  import Comment from './Comment.vue'
   import lodash from 'lodash'
   export default {
     data(){
@@ -66,8 +65,7 @@
     },
     components: {
       Navbar,
-      Post,
-      Comment
+      Post
     },
     methods: {
       getPosts(user) {
@@ -89,7 +87,7 @@
         return this.$store.state.comments
       },
       orderedPosts: function () {
-        var orderPosts = _.orderBy(this.posts, ['likes', 'dislikes'], ['asc', 'desc'])
+        var orderPosts = _.orderBy(this.posts, 'likes')
         return orderPosts.reverse()
       }
     }

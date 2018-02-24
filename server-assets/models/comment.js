@@ -10,7 +10,7 @@ var schema = new Schema({
     required: true
   },
   createdAt: {
-    type: Date,
+    type: String,
     required: true,
     default: moment().format('MMMM Do YYYY, h:mm:ss a')
   },
