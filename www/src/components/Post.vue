@@ -80,7 +80,7 @@
   export default {
     data(){
       return {
-        newLikeNum: 0
+
       }
     },
     components: {
