@@ -11,18 +11,17 @@ var schema = new Schema({
   },
   createdAt: {
     type: String,
-    required: true,
     default: moment().format('MMMM Do YYYY, h:mm:ss a')
   },
   likes: {
     type: Number,
-    required: true,
-    min: 0
+    min: 0,
+    default: 0
   },
   dislikes: {
     type: Number,
-    required: true,
-    min: 0
+    min: 0,
+    default: 0
   },
   userId: {
     type: ObjectId,

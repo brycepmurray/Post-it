@@ -117,6 +117,16 @@ export default new vuex.Store({
     },
     setUser({ commit, dispatch }, user) {
       commit('setUser', user)
+    },
+    addComment({ commit, dispatch }, comment) {
+      console.log(comment)
+      api.post('comments', comment)
+      .then( () => {
+        console.log('added new comment')
+      })
+      .catch(err =>{
+        console.log(err)
+      })
     }
   }
 })
