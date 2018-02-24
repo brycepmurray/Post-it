@@ -7,7 +7,7 @@ var schema = new Schema({
   title: {type: String, required: true},
   desc:  {type: String, required: true},
   createdAt:  {type: Date, required: true, default: Date.now()},
-  imgUrl: {type: String, required: true},
+  imgUrl: {type: String, required: true, default: 'http://placehold.it/200X200'},
   likes: {type: Number, required: true, min: 0},
   dislikes: {type: Number, required: true, min: 0},
   userId: {type: ObjectId, required: true, ref: 'User'}
