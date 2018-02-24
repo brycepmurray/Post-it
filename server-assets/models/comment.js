@@ -33,6 +33,10 @@ var schema = new Schema({
     type: ObjectId,
     required: true,
     ref: 'Post'
+  },
+  parentCommentId: {
+    type: ObjectId,
+    ref: 'Comment'
   }
 })
 
