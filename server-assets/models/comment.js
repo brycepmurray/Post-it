@@ -1,4 +1,5 @@
 var mongoose = require('mongoose')
+var moment = require('moment')
 var Schema = mongoose.Schema
 var ObjectId = Schema.Types.ObjectId
 var schemaName = "Comment"
@@ -11,7 +12,7 @@ var schema = new Schema({
   createdAt: {
     type: Date,
     required: true,
-    default: Date.now()
+    default: moment().format('MMMM Do YYYY, h:mm:ss a')
   },
   likes: {
     type: Number,
