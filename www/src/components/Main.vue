@@ -54,43 +54,13 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-    import Navbar from './Navbar.vue'
-    import Post from './Post.vue'
-    export default {
-        components: {
-            Navbar,
-            Post
-        },
-        methods: {
-            getPosts(user) {
-                this.$store.dispatch('getPosts', user)
-            },
-            addPost() {
-                this.$store.dispatch('addPost', this.newPostData)
-            },
-        },
-        computed: {
-            users() {
-                return this.$store.state.users
-            },
-            posts() {
-                return this.$store.state.posts
-            },
-            comments() {
-                return this.$store.state.comments
-            }
-        }
-=======
   import Navbar from './Navbar.vue'
   import Post from './Post.vue'
-  import Comment from './Comment.vue'
   import lodash from 'lodash'
   export default {
     components: {
       Navbar,
-      Post,
-      Comment
+      Post
     },
     methods: {
       getPosts(user) {
@@ -111,10 +81,9 @@
         return this.$store.state.comments
       },
       orderedPosts: function () {
-        var orderPosts = _.orderBy(this.posts, ['likes', 'dislikes'], ['asc', 'desc'])
+        var orderPosts = _.orderBy(this.posts, 'likes')
         return orderPosts.reverse()
       }
->>>>>>> 470281f539282804bc40285b0c867267dd7a62bc
     }
   }
 </script>
