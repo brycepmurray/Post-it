@@ -19,12 +19,10 @@
 <script>
     import Navbar from './Navbar.vue'
     import Post from './Post.vue'
-    import Comment from './Comment.vue'
     export default {
         components: {
             Navbar,
-            Post,
-            Comment
+            Post
         },
         methods: {
             getPosts(user) {

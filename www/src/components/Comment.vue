@@ -1,13 +1,14 @@
 <template>
     <div>
-        <p>{{comment}}</p>
+        <p>{{comment.desc}}</p>
         <!-- Edit Description Tag -->
         <i class="far fa-edit" data-toggle="modal" data-target="#editCommentModal"></i>
         <!-- Add Reply Tag-->
-        <i class="far fa-plus" data-toggle="modal" data-target="#addReplyModal"></i>
+        <i class="fas fa-plus" data-toggle="modal" data-target="#addReplyModal"></i>
         <!-- MIGHT NEED TO COME BACK AND ADD ICON IN AN ANCOR TAG -->
         <!-- Delete Comment Tag -->
-        <i class="far fa-trash-alt" v-if="activeUserId === comment.userId"  @click="deleteComment"></i>
+        <!-- <i class="far fa-trash-alt" v-if="activeUserId === comment.userId" @click="deleteComment"></i> -->
+        <i class="far fa-trash-alt" @click="deleteComment"></i>
               <!-- MIGHT NEED TO COME BACK AND ADD ICON IN AN ANCOR TAG -->
               
               <!--Edit Modal -->
@@ -35,11 +36,11 @@
             
             
             <!-- Reply Modal -->
-            <div class="modal fade" id="addReplyModal" tabindex="-1" role="dialog" aria-labelledby="addReplyModal" aria-hidden="true">
+            <div class="modal fade" id="addReplyModal" tabindex="-1" role="dialog" aria-labelledby="addReplyModalTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="addReplyModal"></h5>
+                    <h5 class="modal-title" id="addReplyModalTitle"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -64,20 +65,21 @@
 
 <script>
     export default {
+        name: 'Comment',
         computed: {
             comments() {
                 return this.$store.state.comments
             },
-            activeUserId() {
-                return this.$store.state.user._id
-            }
+            // activeUserId() {
+            //     return this.$store.state.user._id
+            // }
         },
         props: ["comment"],
         data() {
             return {
-                activeComment = this.comment.description,
-                showDeleteIcon = false,
-                newDescription = ""
+                activeComment: this.comment.description,
+                showDeleteIcon: false,
+                newDescription: ""
             }
         },
         methods: {

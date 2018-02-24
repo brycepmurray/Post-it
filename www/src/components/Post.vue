@@ -47,22 +47,22 @@
     </div>
     <div class="card-footer d-flex justify-content-between">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#commentModal">
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#showCommentsModal">
         Show Comments
       </button>
 
-      <!-- Modal -->
-      <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalTitle" aria-hidden="true">
+      <!-- Show Comments Modal -->
+      <div class="modal fade" id="showCommentsModal" tabindex="-1" role="dialog" aria-labelledby="showCommentsModalTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="commentModalTitle">Modal title</h5>
+              <h5 class="modal-title" id="showCommentsModalTitle">Comments</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              ...
+              <Comment v-for="comment in comments" :comment="comment" :key="comment._id"></Comment>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -77,6 +77,7 @@
   </div>
 </template>
 <script>
+  import Comment from './Comment.vue'
   export default {
     data(){
       return {
@@ -84,7 +85,7 @@
       }
     },
     components: {
-
+      Comment
     },
     props: ["post"],
     methods: {
@@ -101,6 +102,11 @@
     computed: {
       users() {
         return this.$store.state.user
+      },
+      comments() {
+        var allComments = this.$store.state.comments
+        var postComments = allComments.filter(comment => comment.postId == this.post._id)
+        return postComments
       }
     }
   }
