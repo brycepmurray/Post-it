@@ -30,6 +30,9 @@ export default new vuex.Store({
   mutations: {
     setPosts(state, payload) {
       state.posts = payload
+    },
+    setUsers(state, payload) {
+      state.user = payload
     }
   },
 
@@ -42,6 +45,15 @@ export default new vuex.Store({
         .then(res => {
           commit('setPosts', res.data)
           console.log(res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    getUsers({ commit, dispatch }, payload) {
+      api.get('users')
+        .then(res => {
+          commit('setUsers', res.data)
         })
         .catch(err => {
           console.log(err)
