@@ -74,11 +74,11 @@
         },
         props: ["comment"],
         data() {
-            // return {
-            //     // activeComment = this.comment.description,
-            //     showDeleteIcon = false,
-            //     newDescription = ""
-            // }
+            return {
+                // activeComment = this.comment.description,
+                // showDeleteIcon = false,
+                // newDescription = ""
+            }
         },
         methods: {
             updateComment() {
