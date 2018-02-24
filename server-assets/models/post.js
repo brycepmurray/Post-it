@@ -1,4 +1,5 @@
 var mongoose = require('mongoose')
+var moment = require('moment')
 var Schema = mongoose.Schema
 var ObjectId = Schema.Types.ObjectId
 var schemaName = "Post"
@@ -13,9 +14,9 @@ var schema = new Schema({
     required: true
   },
   createdAt: {
-    type: Date,
+    type: String,
     required: true,
-    default: Date.now()
+    default: moment().format('MMMM Do YYYY, h:mm:ss a')
   },
   imgUrl: {
     type: String,

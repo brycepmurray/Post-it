@@ -1,6 +1,7 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var cors = require('cors')
+var moment = require('moment')
 
 require('./server-assets/db/mlab-config')
 
@@ -14,6 +15,7 @@ var commentRoutes = require('./server-assets/routes/commentRoutes')
 server.use(cors())
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
+
 
 
 server.use('/api', userRoutes.router)
