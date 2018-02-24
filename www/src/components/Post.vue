@@ -99,7 +99,7 @@
       }
     },
     computed: {
-      users() {
+      user() {
         return this.$store.state.user
       }
     }

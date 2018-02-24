@@ -21,28 +21,26 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form action="submit">
+                  <form @submit.prevent="addPost">
                     <div class="form-row addPostForm">
                       <div class="form-group col">
                         <label for="postTitle">Title</label>
-                        <input class="form-control" type="text" id="postTitle" placeholder="Post Title">
+                        <input class="form-control" type="text" id="postTitle" placeholder="Post Title" v-model="newPostData.title">
                       </div>
                       <div class="form-group col">
                         <label for="image">URL</label>
-                        <input class="form-control" type="text" id="image" placeholder="Image URL">
+                        <input class="form-control" type="text" id="image" placeholder="Image URL" v-model="newPostData.imgUrl">
                       </div>
                     </div>
                     <div class="form-row addPostForm">
                       <div class="form-group col">
                         <label for="postDesc">Description</label>
-                        <textarea class="form-control" type="textarea" id="postDesc" placeholder="Post Description" rows="3"></textarea>
+                        <textarea class="form-control" type="textarea" id="postDesc" placeholder="Post Description" rows="3" v-model="newPostData.desc"></textarea>
                       </div>
                     </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Post</button>
                   </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-success">Post</button>
                 </div>
               </div>
             </div>
@@ -59,6 +57,13 @@
   import Comment from './Comment.vue'
   import lodash from 'lodash'
   export default {
+    data(){
+      return {
+        newPostData: {
+          userId: "5a90a16cc0112e197c234788"
+        }
+      }
+    },
     components: {
       Navbar,
       Post,
@@ -68,8 +73,9 @@
       getPosts(user) {
         this.$store.dispatch('getPosts', user)
       },
-      addPost() {
+      addPost(newPostData) {
         this.$store.dispatch('addPost', this.newPostData)
+        console.log("this is before the index:", this.newPostData)
       },
     },
     computed: {
@@ -96,6 +102,7 @@
     background: linear-gradient(rgba(0, 255, 0, 0.5), rgba(0, 255, 0, 0.5)), url("../assets/images/numberbg.jpg");
     background-size: contain;
     background-attachment: fixed;
+    min-height: 100vh;
   }
 
   .addPost {
