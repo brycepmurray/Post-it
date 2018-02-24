@@ -20,7 +20,7 @@ export default new Router({
       component: Navbar
     },
     {
-      path: '/',
+      path: '/post/:id',
       name: 'Post',
       component: Post
     }

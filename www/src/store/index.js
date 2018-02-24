@@ -119,10 +119,30 @@ export default new vuex.Store({
       commit('setUser', user)
     },
     addComment({ commit, dispatch }, comment) {
-      console.log(comment)
+      // console.log(comment)
       api.post('comments', comment)
       .then( () => {
         console.log('added new comment')
+      })
+      .catch(err =>{
+        console.log(err)
+      })
+    },
+    updateComment({ commit, dispatch }, comment) {
+      // console.log(comment)
+      api.put(`comments/${comment._id}`, comment)
+      .then( () => {
+        console.log('added new comment')
+      })
+      .catch(err =>{
+        console.log(err)
+      })
+    },
+    deleteComment({ commit, dispatch }, comment) {
+      console.log(comment)
+      api.delete(`comments/${comment._id}`)
+      .then( () => {
+        console.log('deleted the comment')
       })
       .catch(err =>{
         console.log(err)

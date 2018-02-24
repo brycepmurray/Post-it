@@ -28,6 +28,7 @@
                     <span>&times;</span>
                   </button>
                 </div>
+                
                 <div class="modal-body">
                   <form @submit.prevent="addPost">
                     <div class="form-row addPostForm">
