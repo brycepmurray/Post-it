@@ -28,9 +28,9 @@
               </button>
             </div>
             <div class="modal-body">
-              <form>
+              <form @submit.prevent="addComment">
                 <!-- Need to make sure we wire this form up into the comment DB -->
-                <textarea name="comment" id="commentId" rows="3"></textarea>
+                <textarea name="comment" id="commentId" rows="3" v-model="newComment"></textarea>
                 <button type="submit" class="btn btn-success">Add Comment</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </form>
@@ -81,7 +81,7 @@
     export default {
         data() {
             return {
-
+              newComment: ""
       }
     },
     components: {
@@ -100,6 +100,14 @@
       },
       getCommentsByPost() {
         this.$store.dispatch('getCommentsByPost', this.post)
+      },
+      addComment() {
+        var commentObj = {
+          desc: this.newComment,
+          postId: this.post._id,
+          userId: this.post.userId
+        }
+        this.$store.dispatch('addComment', commentObj)
       }
     },
     computed: {
