@@ -12,7 +12,7 @@
   Sign In
 </button>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">
-    Register User
+    Register
   </button>
   
   <!-- Modal -->
@@ -70,6 +70,8 @@
     .resizeLogo {
         height: 100%;
         max-width: 5rem;
+        height: 5rem;
+        width: 5rem
     }
     
     .profileInfo {
