@@ -2,7 +2,7 @@
   <div class="col-lg-3 col-sm-12 card p-2">
     <h4>{{post.title}}</h4>
     <!-- v-if="post.userId == user.id" NEED TO LINK POST USERID TO USER.NAME -->
-    <p>By: {{post.userName}} 
+    <p>By: {{user.name}} |
       <i>Date Posted: {{post.createdAt}}</i>
     </p>
     <img class="card-img-top" :src="post.imgUrl" alt="">
@@ -28,14 +28,14 @@
               </button>
             </div>
             <div class="modal-body">
-              <form action="submit">
+              <form @submit="addComment">
                 <!-- Need to make sure we wire this form up into the comment DB -->
                 <textarea name="comment" id="commentId" rows="3"></textarea>
+                <button type="submit" class="btn btn-success">Add Comment</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-success">Add Comment</button>
             </div>
           </div>
         </div>
