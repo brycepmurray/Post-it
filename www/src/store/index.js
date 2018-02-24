@@ -97,15 +97,6 @@ export default new vuex.Store({
           console.log(err)
         })
     },
-    dislike({ commit, dispatch }, payload) {
-      api.put('posts/' + payload._id, { dislikes: ++payload.dislikes })
-        .then(res => {
-          commit('dislikes', res.data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
     dislike({commit, dispatch}, payload){
       api.put('posts/' + payload._id, {dislikes:++payload.dislikes})
       .then(res =>{

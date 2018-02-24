@@ -10,7 +10,7 @@ export default {
   name: 'App',
   mounted(){
     this.$store.dispatch('getPosts')
-    this.$store.dispatch('getComments')
+    // this.$store.dispatch('getComments')
     this.$store.dispatch('getUsers')
   }
 }
