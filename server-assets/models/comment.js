@@ -7,6 +7,7 @@ var schema = new Schema({
   desc:  {type: String, required: true},
   createdAt:  {type: Date, required: true, default: Date.now()},
   likes: {type: Number, required: true, min: 0},
+  dislikes: {type: Number, required: true, min: 0},
   userId: {type: ObjectId, required: true, ref: 'User'},
   postId: {type: ObjectId, required: true, ref: 'Post'}
 })

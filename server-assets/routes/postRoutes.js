@@ -61,9 +61,18 @@ function createPost(req, res, next) {
     .catch(next)
 }
 
+function deletePostComments(id) {
+  PostComment.deleteMany({ postId: id })
+    .then( response => {
+      console.log(response)
+    })
+    .catch(next)
+}
+
 function deletePost(req, res, next) {
   Post.findByIdAndRemove(req.params.id)
     .then(post => {
+      deletePostComments(req.params.id)
       return res.send('Sucessfully deleted a post')
     })
     .catch(next)
