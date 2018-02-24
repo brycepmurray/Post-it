@@ -50,46 +50,20 @@ function CreateUser(req, res, next) {
     .catch(next)
 }
 
-// function deleteUserPosts(id, res, next) {
-//   Post.deleteMany({ userId: id })
-//     .then( () => {
-//       deleteUserComments(id, res, next)
-//     })
-//     .catch(next)
-// }
-
-// function deleteUserComments(id, res, next) {
-//   PostComment.deleteMany({ userId: id })
-//     .then( () => {
-//       return res.send('Sucessfully deleted a user with all posts and comments')
-//     })
-//     .catch(next)
-// }
-
-// function DeleteUser(req, res, next) {
-//   User.findByIdAndRemove(req.params.id)
-//     .then(user => {
-//       deleteUserPosts(req.params.id, res, next)
-//       // deleteUserComments(req.params.id)
-//       // return res.send('Sucessfully deleted a user')
-//     })
-//     .catch(next)
-// }
-
 function DeleteUser(req, res, next) {
   User.findByIdAndRemove(req.params.id)
     .then(user => {
       return res.send('Sucessfully deleted a user')
     })
     .catch(next)
-  Post.deleteMany({ userId: id })
+  Post.deleteMany({ userId: req.params.id })
     .then( () => {
-      deleteUserComments(id, res, next)
+      console.log('deleted user posts')
     })
     .catch(next)
-  PostComment.deleteMany({ userId: id })
+  PostComment.deleteMany({ userId: req.params.id })
     .then( () => {
-      return res.send('Sucessfully deleted a user with all posts and comments')
+      console.log('deleted user comments')
     })
     .catch(next)
 }
