@@ -17,46 +17,45 @@
 </template>
 
 <script>
-  import Navbar from './Navbar.vue'
-  import Post from './Post.vue'
-  import Comment from './Comment.vue'
-  export default {
-    components: {
-      Navbar,
-      Post,
-      Comment
-    },
-    methods: {
-      getPosts(user) {
-        this.$store.dispatch('getPosts', user)
-      },
-      addPost() {
-        this.$store.dispatch('addPost', this.newPostData)
-      },
-    },
-      computed: {
-      users() {
-        return this.$store.state.users
-      },
-      posts() {
-        return this.$store.state.posts
-      },
-      comments() {
-        return this.$store.state.comments
-      }
+    import Navbar from './Navbar.vue'
+    import Post from './Post.vue'
+    import Comment from './Comment.vue'
+    export default {
+        components: {
+            Navbar,
+            Post,
+            Comment
+        },
+        methods: {
+            getPosts(user) {
+                this.$store.dispatch('getPosts', user)
+            },
+            addPost() {
+                this.$store.dispatch('addPost', this.newPostData)
+            },
+        },
+        computed: {
+            users() {
+                return this.$store.state.users
+            },
+            posts() {
+                return this.$store.state.posts
+            },
+            comments() {
+                return this.$store.state.comments
+            }
+        }
     }
-  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .body {
-    background: linear-gradient(rgba(0, 255, 0, 0.5), rgba(0, 255, 0, 0.5)), url("../assets/images/numberbg.jpg");
-    background-size: contain;
-    background-attachment: fixed;
-  }
-
-  /* .card {
+    .body {
+        background: linear-gradient(rgba(0, 255, 0, 0.5), rgba(0, 255, 0, 0.5)), url("../assets/images/numberbg.jpg");
+        background-size: contain;
+        background-attachment: fixed;
+    }
+    /* .card {
     margin-top: 2.5rem;
     box-shadow: 6px 6px 8px 2px rgba(109, 106, 106, 0.993);
     border-radius: 20px
@@ -111,28 +110,27 @@
   .voteBtns {
     font-size: 24px;
   } */
-
-  .addPost {
-    color: aliceblue;
-    opacity: .8;
-    transition: all .3s linear;
-    border-radius: 20px
-  }
-
-  .addPost:hover {
-    opacity: 1;
-    box-shadow: 6px 6px 8px 2px rgba(109, 106, 106, 0.993);
-  }
-
-  .addPostCol {
-    margin-left: .5rem;
-    text-align: end;
-    padding-right: 4.4rem;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-  }
-
-  /* textarea {
+    
+    .addPost {
+        color: aliceblue;
+        opacity: .8;
+        transition: all .3s linear;
+        border-radius: 20px
+    }
+    
+    .addPost:hover {
+        opacity: 1;
+        box-shadow: 6px 6px 8px 2px rgba(109, 106, 106, 0.993);
+    }
+    
+    .addPostCol {
+        margin-left: .5rem;
+        text-align: end;
+        padding-right: 4.4rem;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+    }
+    /* textarea {
     width: 100%
   } */
 </style>
