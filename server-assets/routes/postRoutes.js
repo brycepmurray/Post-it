@@ -19,16 +19,21 @@ router.get('/posts/:id/comments', getCommentsByPost)
 router.get('/posts/:id/comments/:comment_id', getCommentByPost)
 
 function getCommentsByPost(req, res, next) {
-  PostComment.find({ postId: req.params.id })
-    .then( comments => {
+  PostComment.find({
+      postId: req.params.id
+    })
+    .then(comments => {
       res.send(comments)
     })
     .catch(next)
 }
 
 function getCommentByPost(req, res, next) {
-  PostComment.find({ postId: req.params.id, _id: req.params.comment_id })
-    .then( comment => {
+  PostComment.find({
+      postId: req.params.id,
+      _id: req.params.comment_id
+    })
+    .then(comment => {
       res.send(comment)
     })
     .catch(next)
@@ -64,7 +69,17 @@ function createPost(req, res, next) {
 function deletePost(req, res, next) {
   Post.findByIdAndRemove(req.params.id)
     .then(post => {
-      return res.send('Sucessfully deleted a post')
+      return res.send({
+        message: 'Sucessfully deleted a post'
+      })
+    })
+    .catch(next)
+    
+  PostComment.deleteMany({
+      postId: req.params.id
+    })
+    .then(() => {
+      console.log('deleted post comments')
     })
     .catch(next)
 }
@@ -80,9 +95,7 @@ function updatePost(req, res, next) {
       })
     })
     .catch(next)
-
 }
-
 
 module.exports = {
   router

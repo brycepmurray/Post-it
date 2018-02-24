@@ -1,4 +1,4 @@
-var Comment = require('../models/comment')
+var PostComment = require('../models/comment')
 
 var router = require('express').Router()
 
@@ -14,7 +14,7 @@ router.delete('/comments/:id', DeleteComment)
 router.put('/comments/:id', UpdateComment)
 
 function getAllComments(req, res, next) {
-  Comment.find(req.query)
+  PostComment.find(req.query)
     .then(comments => {
       res.send(comments)
     })
@@ -22,7 +22,7 @@ function getAllComments(req, res, next) {
 }
 
 function getOneComment(req, res, next) {
-  Comment.findById(req.params.id)
+  PostComment.findById(req.params.id)
     .then(comment => {
       return res.send(comment)
     })
@@ -30,7 +30,7 @@ function getOneComment(req, res, next) {
 }
 
 function CreateComment(req, res, next) {
-  Comment.create(req.body)
+  PostComment.create(req.body)
     .then(comment => {
       return res.send({
         message: 'Sucessfully created a comment',
@@ -41,15 +41,17 @@ function CreateComment(req, res, next) {
 }
 
 function DeleteComment(req, res, next) {
-  Comment.findByIdAndRemove(req.params.id)
+  PostComment.findByIdAndRemove(req.params.id)
     .then(comment => {
-      return res.send('Sucessfully deleted a comment')
+      return res.send({
+        message: 'Sucessfully deleted a comment'
+      })
     })
     .catch(next)
 }
 
 function UpdateComment(req, res, next) {
-  Comment.findByIdAndUpdate(req.params.id, req.body, {
+  PostComment.findByIdAndUpdate(req.params.id, req.body, {
       new: true
     })
     .then(comment => {
@@ -59,9 +61,7 @@ function UpdateComment(req, res, next) {
       })
     })
     .catch(next)
-
 }
-
 
 module.exports = {
   router

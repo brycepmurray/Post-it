@@ -14,13 +14,13 @@ router.post('/users', CreateUser)
 router.delete('/users/:id', DeleteUser)
 // Update a User
 router.put('/users/:id', UpdateUser)
-// get post by user
+// Get a post by user
 router.get('/users/:id/posts/:post_id', getPostByUser)
-// get posts by user
+// Get posts by user
 router.get('/users/:id/posts/', getPostsByUser)
-// get comment by user
+// Get a comment by user
 router.get('/users/:id/posts/:post_id/comments/:comment_id', getCommentByUser)
-// get comments by user
+// Get comments by user
 router.get('/users/:id/posts/:post_id/comments/', getCommentsByUser)
 
 function getAllUsers(req, res, next) {
@@ -53,7 +53,25 @@ function CreateUser(req, res, next) {
 function DeleteUser(req, res, next) {
   User.findByIdAndRemove(req.params.id)
     .then(user => {
-      return res.send('Sucessfully deleted a user')
+      return res.send({
+        message: 'Sucessfully deleted a user'
+      })
+    })
+    .catch(next)
+
+  Post.deleteMany({
+      userId: req.params.id
+    })
+    .then(() => {
+      console.log('deleted user posts')
+    })
+    .catch(next)
+    
+  PostComment.deleteMany({
+      userId: req.params.id
+    })
+    .then(() => {
+      console.log('deleted user comments')
     })
     .catch(next)
 }
@@ -72,7 +90,9 @@ function UpdateUser(req, res, next) {
 }
 
 function getPostsByUser(req, res, next) {
-  Post.find({ userId: req.params.id })
+  Post.find({
+      userId: req.params.id
+    })
     .then(posts => {
       return res.send(posts)
     })
@@ -80,7 +100,10 @@ function getPostsByUser(req, res, next) {
 }
 
 function getPostByUser(req, res, next) {
-  Post.find({ _id: req.params.id, postId: req.params.post_id })
+  Post.find({
+      _id: req.params.id,
+      postId: req.params.post_id
+    })
     .then(post => {
       return res.send(post)
     })
@@ -88,7 +111,10 @@ function getPostByUser(req, res, next) {
 }
 
 function getCommentsByUser(req, res, next) {
-  PostComment.find({ userId: req.params.id, postId: req.params.post_id })
+  PostComment.find({
+      userId: req.params.id,
+      postId: req.params.post_id
+    })
     .then(comments => {
       return res.send(comments)
     })
@@ -96,13 +122,16 @@ function getCommentsByUser(req, res, next) {
 }
 
 function getCommentByUser(req, res, next) {
-  PostComment.find({ _id: req.params.comment_id, userId: req.params.id, postId: req.params.post_id })
+  PostComment.find({
+      _id: req.params.comment_id,
+      userId: req.params.id,
+      postId: req.params.post_id
+    })
     .then(comment => {
       return res.send(comment)
     })
     .catch(next)
 }
-
 
 module.exports = {
   router
