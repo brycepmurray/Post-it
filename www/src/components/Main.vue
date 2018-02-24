@@ -1,6 +1,14 @@
 <template>
   <div class="body">
     <Navbar></Navbar>
+
+    <h1>{{activeUser.name}}</h1>
+
+    <div class="users">
+      <div class="user" v-for="user in users" @click="setActiveUser(user)">
+        <p>{{user.name}}</p>
+      </div>
+    </div>
     <div class="container-fluid fillPage">
       <div class="row justify-content-around">
         <Post v-for="post in orderedPosts" :post="post"></Post>
@@ -48,56 +56,68 @@
         </div>
       </div>
     </div>
+
+
+
+
+
+
   </div>
 </template>
 
 <script>
-    import Navbar from './Navbar.vue'
-    import Post from './Post.vue'
-    import lodash from 'lodash'
-    export default {
-        data() {
-            return {
-                newPostData: {
-                    userId: "5a90a16cc0112e197c234788",
-                    userName: ""
-                }
-            }
-        },
-        components: {
-            Navbar,
-            Post
-        },
-        methods: {
-            getPosts(user) {
-                this.$store.dispatch('getPosts', user)
-            },
-            addPost(newPostData) {
-                newPostData.userId = this.activeUser._id
-                newPostData.userName = this.activeUser.name
-                this.$store.dispatch('addPost', this.newPostData)
-                console.log("this is before the index:", this.newPostData)
-            },
-        },
-        computed: {
-            activeUser() {
-                return this.$store.state.activeUser
-            },
-            users() {
-                return this.$store.state.users
-            },
-            posts() {
-                return this.$store.state.posts
-            },
-            comments() {
-                return this.$store.state.comments
-            },
-            orderedPosts: function() {
-                var orderPosts = _.orderBy(this.posts, 'likes')
-                return orderPosts.reverse()
-            }
+  import Navbar from './Navbar.vue'
+  import Post from './Post.vue'
+  import lodash from 'lodash'
+  export default {
+    mounted() {
+      this.$store.dispatch('getUsers')
+    },
+    data() {
+      return {
+        newPostData: {
+          userId: "5a90a16cc0112e197c234788",
+          userName: ""
         }
+      }
+    },
+    components: {
+      Navbar,
+      Post
+    },
+    methods: {
+      getPosts(user) {
+        this.$store.dispatch('getPosts', user)
+      },
+      addPost(newPostData) {
+        newPostData.userId = this.activeUser._id
+        newPostData.userName = this.activeUser.name
+        this.$store.dispatch('addPost', this.newPostData)
+        console.log("this is before the index:", this.newPostData)
+      },
+      setActiveUser(user) {
+        this.$store.dispatch('setUser', user)
+      }
+    },
+    computed: {
+      activeUser() {
+        return this.$store.state.user
+      },
+      users() {
+        return this.$store.state.users
+      },
+      posts() {
+        return this.$store.state.posts
+      },
+      comments() {
+        return this.$store.state.comments
+      },
+      orderedPosts: function () {
+        var orderPosts = _.orderBy(this.posts, 'likes')
+        return orderPosts.reverse()
+      }
     }
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -107,9 +127,11 @@
     background-size: contain;
     background-attachment: fixed;
   }
-.fillPage{
+
+  .fillPage {
     min-height: 100vh;
-}
+  }
+
   .addPost {
     color: aliceblue;
     opacity: .8;
@@ -129,6 +151,7 @@
     padding-bottom: 1rem;
     padding-top: 1rem;
   }
+
   .addPostForm {
     text-align: left
   }

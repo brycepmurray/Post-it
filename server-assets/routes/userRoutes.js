@@ -38,7 +38,13 @@ function getOneUser(req, res, next) {
     })
     .catch(next)
 }
-
+function setActiveUser(req, res, next) {
+  User.findOne(req.params.id)
+    .then(user => {
+      return res.send(user)
+    })
+    .catch(next)
+}
 function createUser(req, res, next) {
   User.create(req.body)
     .then(user => {
