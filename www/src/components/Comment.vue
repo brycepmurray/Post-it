@@ -77,9 +77,15 @@
         props: ["comment"],
         data() {
             return {
+<<<<<<< HEAD
                 activeComment: this.comment.description,
                 showDeleteIcon: false,
                 newDescription: ""
+=======
+                // activeComment = this.comment.description,
+                // showDeleteIcon = false,
+                // newDescription = ""
+>>>>>>> 470281f539282804bc40285b0c867267dd7a62bc
             }
         },
         methods: {
