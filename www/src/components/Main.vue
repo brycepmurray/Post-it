@@ -67,94 +67,94 @@
 </template>
 
 <script>
-  import Navbar from './Navbar.vue'
-  import Post from './Post.vue'
-  import lodash from 'lodash'
-  export default {
-    // mounted() {
-    //   this.$store.dispatch('getUsers')
-    // },
-    data() {
-      return {
-        newPostData: {
-          userId: "5a90a16cc0112e197c234788",
-          userName: ""
+    import Navbar from './Navbar.vue'
+    import Post from './Post.vue'
+    import lodash from 'lodash'
+    export default {
+        // mounted() {
+        //   this.$store.dispatch('getUsers')
+        // },
+        data() {
+            return {
+                newPostData: {
+                    userId: "5a90a16cc0112e197c234788",
+                    userName: ""
+                }
+            }
+        },
+        components: {
+            Navbar,
+            Post
+        },
+        methods: {
+            getPosts(user) {
+                this.$store.dispatch('getPosts', user)
+            },
+            addPost(newPostData) {
+                console.log('active user:', this.activeUser._id)
+                newPostData.userId = this.activeUser._id
+                    // newPostData.userName = this.activeUser.name
+                this.$store.dispatch('addPost', this.newPostData)
+                console.log("this is before the index:", this.newPostData)
+            },
+            // setActiveUser(user) {
+            //   this.$store.dispatch('setUser', user)
+            // }
+        },
+        computed: {
+            activeUser() {
+                return this.$store.state.user
+            },
+            users() {
+                return this.$store.state.users
+            },
+            posts() {
+                return this.$store.state.posts
+            },
+            // comments() {
+            //   return this.$store.state.comments
+            // },
+            orderedPosts() {
+                var orderPosts = _.orderBy(this.posts, ['likes', 'dislikes'], ['asc', 'desc'])
+                return orderPosts.reverse()
+            }
         }
-      }
-    },
-    components: {
-      Navbar,
-      Post
-    },
-    methods: {
-      getPosts(user) {
-        this.$store.dispatch('getPosts', user)
-      },
-      addPost(newPostData) {
-        console.log('active user:', this.activeUser._id)
-        newPostData.userId = this.activeUser._id
-        // newPostData.userName = this.activeUser.name
-        this.$store.dispatch('addPost', this.newPostData)
-        console.log("this is before the index:", this.newPostData)
-      },
-      // setActiveUser(user) {
-      //   this.$store.dispatch('setUser', user)
-      // }
-    },
-    computed: {
-      activeUser() {
-        return this.$store.state.user
-      },
-      users() {
-        return this.$store.state.users
-      },
-      posts() {
-        return this.$store.state.posts
-      },
-      // comments() {
-      //   return this.$store.state.comments
-      // },
-      orderedPosts() {
-        var orderPosts = _.orderBy(this.posts, ['likes', 'dislikes'], ['asc','desc'])
-        return orderPosts.reverse()
-      }
     }
-  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .body {
-    background: linear-gradient(rgba(0, 255, 0, 0.5), rgba(0, 255, 0, 0.5)), url("../assets/images/numberbg.jpg");
-    background-size: contain;
-    background-attachment: fixed;
-  }
-
-  .fillPage {
-    min-height: 100vh;
-  }
-
-  .addPost {
-    color: aliceblue;
-    opacity: .8;
-    transition: all .3s linear;
-    border-radius: 20px
-  }
-
-  .addPost:hover {
-    opacity: 1;
-    box-shadow: 6px 6px 8px 2px rgba(109, 106, 106, 0.993);
-  }
-
-  .addPostCol {
-    margin-left: .5rem;
-    text-align: end;
-    padding-right: 4.4rem;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-  }
-
-  .addPostForm {
-    text-align: left
-  }
+    .body {
+        background: linear-gradient(rgba(0, 255, 0, 0.5), rgba(0, 255, 0, 0.5)), url("../assets/images/numberbg.jpg");
+        background-size: contain;
+        background-attachment: fixed;
+    }
+    
+    .fillPage {
+        min-height: 100vh;
+    }
+    
+    .addPost {
+        color: aliceblue;
+        opacity: .8;
+        transition: all .3s linear;
+        border-radius: 20px
+    }
+    
+    .addPost:hover {
+        opacity: 1;
+        box-shadow: 6px 6px 8px 2px rgba(109, 106, 106, 0.815);
+    }
+    
+    .addPostCol {
+        margin-left: .5rem;
+        text-align: end;
+        padding-right: 4.4rem;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+    }
+    
+    .addPostForm {
+        text-align: left
+    }
 </style>

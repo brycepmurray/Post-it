@@ -81,51 +81,51 @@
     export default {
         data() {
             return {
-              newComment: ""
-      }
-    },
-    components: {
-      Comment
-    },
-    props: ["post"],
-    methods: {
-      addLike(post){
-        this.$store.dispatch('addLike', post)
-      },
-      dislike(post){
-        this.$store.dispatch('dislike', post)
-      },
-      getUsers(user){
-        this.$store.dispatch('getUsers', user)
-      },
-      getCommentsByPost() {
-        this.$store.dispatch('getCommentsByPost', this.post)
-      },
-      addComment() {
-        var commentObj = {
-          desc: this.newComment,
-          postId: this.post._id,
-          userId: this.post.userId
+                newComment: ""
+            }
+        },
+        components: {
+            Comment
+        },
+        props: ["post"],
+        methods: {
+            addLike(post) {
+                this.$store.dispatch('addLike', post)
+            },
+            dislike(post) {
+                this.$store.dispatch('dislike', post)
+            },
+            getUsers(user) {
+                this.$store.dispatch('getUsers', user)
+            },
+            getCommentsByPost() {
+                this.$store.dispatch('getCommentsByPost', this.post)
+            },
+            addComment() {
+                var commentObj = {
+                    desc: this.newComment,
+                    postId: this.post._id,
+                    userId: this.post.userId
+                }
+                this.$store.dispatch('addComment', commentObj)
+            }
+        },
+        computed: {
+            users() {
+                return this.$store.state.user
+            },
+            comments() {
+                return this.$store.state.comments
+            }
         }
-        this.$store.dispatch('addComment', commentObj)
-      }
-    },
-    computed: {
-      users() {
-        return this.$store.state.user
-      },
-      comments() {
-        return this.$store.state.comments
-      }
     }
-  }
 </script>
 <style>
     .card {
         margin-top: 2.5rem;
         margin-right: .5rem;
         margin-left: .5rem;
-        box-shadow: 6px 6px 8px 2px rgba(109, 106, 106, 0.993);
+        box-shadow: 6px 6px 8px 2px rgba(109, 106, 106, 0.815);
         border-radius: 20px
     }
     
