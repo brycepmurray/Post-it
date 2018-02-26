@@ -1,11 +1,13 @@
 var mongoose = require('mongoose')
+var bcrypt = require('bcryptjs')
 var Schema = mongoose.Schema
 var schemaName = "User"
+const SALT_FACTOR = 23
 
 var schema = new Schema({
   name: {
     type: String,
-    required: true
+    // required: true
   },
   email: {
     type: String,
@@ -13,15 +15,24 @@ var schema = new Schema({
   },
   password: {
     type: String,
-    required: true
+    required: true,
+    minlength: 6
   },
   photoUrl: {
     type: String,
     required: true
   },
-  active: {
-    type: Boolean
-  }
+  // active: {
+  //   type: Boolean
+  // }
 })
+
+schema.statics.generateHash = function(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(SALT_FACTOR))
+}
+
+schema.methods.validatePassword = function(password) {
+  return bcrypt.compareSync(password, this.password)
+}
 
 module.exports = mongoose.model(schemaName, schema)

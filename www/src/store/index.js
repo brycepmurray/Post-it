@@ -52,7 +52,7 @@ export default new vuex.Store({
 
     addPost({ commit, dispatch }, payload) {
       console.log("this is our object:", payload)
-      api.post('/posts', payload)
+      api.post('posts', payload)
         .then(res => {
           console.log("how about here?", res)
           commit('addPost', res.data.data)
@@ -79,15 +79,15 @@ export default new vuex.Store({
           console.log(err)
         })
     },
-    getUsers({ commit, dispatch }, payload) {
-      api.get('users')
-        .then(res => {
-          commit('setUsers', res.data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
+    // getUsers({ commit, dispatch }, payload) {
+    //   api.get('users')
+    //     .then(res => {
+    //       commit('setUsers', res.data)
+    //     })
+    //     .catch(err => {
+    //       console.log(err)
+    //     })
+    // },
     addLike({ commit, dispatch }, payload) {
       api.put('posts/' + payload._id, { likes: ++payload.likes })
         .then(res => {
@@ -115,9 +115,9 @@ export default new vuex.Store({
         console.log(err)
       })
     },
-    setUser({ commit, dispatch }, user) {
-      commit('setUser', user)
-    },
+    // setUser({ commit, dispatch }, user) {
+    //   commit('setUser', user)
+    // },
     addComment({ commit, dispatch }, comment) {
       // console.log(comment)
       api.post('comments', comment)

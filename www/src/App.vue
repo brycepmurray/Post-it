@@ -11,7 +11,7 @@ export default {
   mounted(){
     this.$store.dispatch('getPosts')
     // this.$store.dispatch('getComments')
-    this.$store.dispatch('getUsers')
+    // this.$store.dispatch('getUsers')
   }
 }
 </script>
