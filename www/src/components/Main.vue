@@ -115,7 +115,7 @@
       //   return this.$store.state.comments
       // },
       orderedPosts() {
-        var orderPosts = _.orderBy(this.posts, 'likes')
+        var orderPosts = _.orderBy(this.posts, ['likes', 'dislikes'], ['asc','desc'])
         return orderPosts.reverse()
       }
     }
