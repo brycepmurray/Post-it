@@ -8,7 +8,12 @@
         </span>
       </div>
       <div class="col-lg-6 col-sm-12 profileInfo">
-        <button type="button" class="btn btn-dark" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Sign In" data-content='<form action="submit"><input type=“text” name=“email” placeholder=email id=“”><input type=“text” name=“password” placeholder=password id=“”> <button class="btn btn-success" type="submit">Submit</button></form>'>
+        <button type="button" class="btn btn-dark" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" 
+        title="Sign In" data-content='<form @submit="login">
+            <input v-model="loginForm.email" type=“text” name=“email” placeholder=email id=“”>
+            <input v-model="loginForm.password" type=“text” name=“password” placeholder=password id=“”> 
+            <button class="btn btn-success" type="submit">Submit</button>
+        </form>'>
   Sign In
 </button>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">
@@ -26,15 +31,15 @@
           </button>
         </div>
         <div class="modal-body">
-         <form @submit.prevent="createUser">
-             <input type=“text” name=“name” placeholder=name id=“”>
-             <input type=“text” name=“email” placeholder=bob@bob.com id=“”>
-             <input type=“text” name=“password” placeholder=password id=“”>
-             <input type=“text” name=“photoUrl” placeholder=ImageURL id=“”>
+         <form @submit="createUser">
+             <input v-model="registerForm.name" type=“text” name=“name” placeholder=name id=“”>
+             <input v-model="registerForm.email" type=“text” name=“email” placeholder=bob@bob.com id=“”>
+             <input v-model="registerForm.password" type=“text” name=“password” placeholder=password id=“”>
+             <input v-model="registerForm.photoUrl" type=“text” name=“photoUrl” placeholder=ImageURL id=“”>
             </form>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-success">Register</button>
+            <button type="submit" @submit="createUser" class="btn btn-success">Register</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
@@ -52,13 +57,28 @@
                 $('[data-toggle="popover"]').popover()
             })
         },
+        data() {
+            return {
+                loginForm: {
+                    email: "",
+                    password: "",
+                },
+                registerForm: {
+                    name: "",
+                    email: "",
+                    password: "",
+                    photoUrl: ""
+                }
+            }
+        },
         methods: {
-            createUser(formData) {
-                this.$store.dispatch('createUser', formData)
+            createUser() {
+                console.log("Am I Here?", this.registerForm)
+                this.$store.dispatch('createUser', this.registerForm)
             },
 
-            login(formData) {
-                this.$store.dispatch('login', formData)
+            login() {
+                this.$store.dispatch('login', this.loginForm)
             },
         }
     }

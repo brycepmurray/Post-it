@@ -9,6 +9,11 @@ var api = axios.create({
     timeout: 3000
 })
 
+var auth = axios.create({
+    baseURL: '//localhost:3000/auth/',
+    timeout: 3000
+})
+
 vue.use(vuex)
 
 export default new vuex.Store({
@@ -51,7 +56,7 @@ export default new vuex.Store({
     actions: {
 
         createUser({ commit, dispatch }, payload) {
-            auth.post('createUser', payload)
+            auth.post('register', payload)
                 .then(res => {
                     commit('setUser', res.data.data)
                     router.push({ name: 'Main' })
