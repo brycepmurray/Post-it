@@ -26,7 +26,7 @@
           </button>
         </div>
         <div class="modal-body">
-         <form @submit.prevent="registerUser">
+         <form @submit.prevent="createUser">
              <input type=“text” name=“name” placeholder=name id=“”>
              <input type=“text” name=“email” placeholder=bob@bob.com id=“”>
              <input type=“text” name=“password” placeholder=password id=“”>
