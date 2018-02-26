@@ -8,7 +8,7 @@
         </span>
       </div>
       <div class="col-lg-6 col-sm-12 profileInfo">
-        <button type="button" class="btn btn-dark" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Sign In" data-content='<form action="submit"><input type=“text” name=“email” placeholder=email id=“”><input type=“text” name=“password” placeholder=password id=“”></form>'>
+        <button type="button" class="btn btn-dark" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Sign In" data-content='<form action="submit"><input type=“text” name=“email” placeholder=email id=“”><input type=“text” name=“password” placeholder=password id=“”> <button class="btn btn-success" type="submit">Submit</button></form>'>
   Sign In
 </button>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">
@@ -26,7 +26,7 @@
           </button>
         </div>
         <div class="modal-body">
-         <form action="submit">
+         <form @submit.prevent="registerUser">
              <input type=“text” name=“name” placeholder=name id=“”>
              <input type=“text” name=“email” placeholder=bob@bob.com id=“”>
              <input type=“text” name=“password” placeholder=password id=“”>
@@ -34,7 +34,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-success">Register</button>
+            <button type="submit" class="btn btn-success">Register</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
