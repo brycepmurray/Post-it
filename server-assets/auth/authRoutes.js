@@ -5,10 +5,11 @@ var router = require('express').Router()
 
 router.post('/auth/register', (req, res) => { // never call 'next' inside an auth route!
   req.body.password = Users.generateHash(req.body.password)  // don't bother with a confirmPassword on backend -- use that for front-end validation
+  console.log(req.body)
   Users.create(req.body)
-    .then( user => {
+    .then(user => {
       if(!user) {
-        return res.status(401).send({error: 'Invalid username and/or password'})
+        return res.status(401).send({error: 'Invalid username and/or password 1'})
       }
       user.password = null // probably Mongoose doesn't let you delete the password!!
       delete user.password // don't send the (hashed) password to the front-end
@@ -16,11 +17,11 @@ router.post('/auth/register', (req, res) => { // never call 'next' inside an aut
       res.send(user)
     })
     .catch( err => {
-      res.status(401).send({error: 'Invalid username and/or password'}) // do not send the 'err' object back -- giving too much info to potential hackers!
+      res.status(401).send({error: 'Invalid username and/or password 2'}) // do not send the 'err' object back -- giving too much info to potential hackers!
     })
 })
 
-router.post('/auto/login', (req, res) => {
+router.post('/auth/login', (req, res) => {
   Users.findOne({email: req.body.email})
     .then( user => {
       if(!user) {

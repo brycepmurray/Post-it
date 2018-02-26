@@ -16,10 +16,19 @@ var postRoutes = require('./server-assets/routes/postRoutes')
 var commentRoutes = require('./server-assets/routes/commentRoutes')
 
 server.use(cors())
+server.use(session)
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
 
 server.use(authRoutes)
+
+// a quickie test route to see if session is working
+// server.get('/protected', (req, res, next) => {
+//     if(req.session.uid) {
+//         return res.send({message: 'You are logged in'})
+//     }
+//     return res.status(401).send({error: 'Please log in to continue'})
+// })
 
 server.use('/api/*', (req, res, next) => { // gateway for all following routes
   if(req.method.toLowerCase() != 'get' && !req.session.uid) {

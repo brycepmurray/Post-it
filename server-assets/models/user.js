@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 var bcrypt = require('bcryptjs')
 var Schema = mongoose.Schema
 var schemaName = "User"
-const SALT_FACTOR = 23
+const SALT_FACTOR = 13
 
 var schema = new Schema({
   name: {
@@ -16,7 +16,7 @@ var schema = new Schema({
   password: {
     type: String,
     required: true,
-    minlength: 6
+    // minlength: 6
   },
   photoUrl: {
     type: String,
