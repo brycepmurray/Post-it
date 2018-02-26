@@ -2,13 +2,13 @@
   <div class="body">
     <Navbar></Navbar>
 
-    <h1>{{activeUser.name}}</h1>
+    <!-- <h1>{{activeUser.name}}</h1>
 
     <div class="users">
       <div class="user" v-for="user in users" @click="setActiveUser(user)">
         <p>{{user.name}}</p>
       </div>
-    </div>
+    </div> -->
     <div class="container-fluid fillPage">
       <div class="row justify-content-around">
         <Post v-for="post in orderedPosts" :post="post"></Post>
@@ -71,9 +71,9 @@
   import Post from './Post.vue'
   import lodash from 'lodash'
   export default {
-    mounted() {
-      this.$store.dispatch('getUsers')
-    },
+    // mounted() {
+    //   this.$store.dispatch('getUsers')
+    // },
     data() {
       return {
         newPostData: {
@@ -91,14 +91,15 @@
         this.$store.dispatch('getPosts', user)
       },
       addPost(newPostData) {
+        console.log('active user:', this.activeUser._id)
         newPostData.userId = this.activeUser._id
-        newPostData.userName = this.activeUser.name
+        // newPostData.userName = this.activeUser.name
         this.$store.dispatch('addPost', this.newPostData)
         console.log("this is before the index:", this.newPostData)
       },
-      setActiveUser(user) {
-        this.$store.dispatch('setUser', user)
-      }
+      // setActiveUser(user) {
+      //   this.$store.dispatch('setUser', user)
+      // }
     },
     computed: {
       activeUser() {
