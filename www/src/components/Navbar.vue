@@ -51,6 +51,15 @@
             $(function() {
                 $('[data-toggle="popover"]').popover()
             })
+        },
+        methods: {
+            createUser(formData) {
+                this.$store.dispatch('createUser', formData)
+            },
+
+            login(formData) {
+                this.$store.dispatch('login', formData)
+            },
         }
     }
 </script>
