@@ -8,21 +8,20 @@ import Post from '@/components/Post'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Main',
-      component: Main
-    },
-    {
-      path: '/',
-      name: 'Navbar',
-      component: Navbar
-    },
-    {
-      path: '/post/:id',
-      name: 'Post',
-      component: Post
-    }
-  ]
+    routes: [{
+            path: '/',
+            name: 'Main',
+            component: Main
+        },
+        // {
+        //   path: '/',
+        //   name: 'Navbar',
+        //   component: Navbar
+        // },
+        // {
+        //   path: '/post/:id',
+        //   name: 'Post',
+        //   component: Post
+        // }
+    ]
 })
