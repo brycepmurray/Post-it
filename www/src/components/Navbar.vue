@@ -59,7 +59,7 @@
 <style scoped>
     .navBar {
         max-height: 5rem;
-        box-shadow: 6px 6px 8px 2px rgba(109, 106, 106, 0.993);
+        box-shadow: 0px 0px 3px 6px rgba(121, 119, 119, 0.363)
     }
     
     .logo {
@@ -86,6 +86,11 @@
     }
     
     .body {
-        background: rgb(220, 236, 250)
+        background: rgba(3, 3, 3, 0.85);
+        color: aliceblue;
+    }
+    
+    .modal-title {
+        color: black;
     }
 </style>
