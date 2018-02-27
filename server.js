@@ -34,6 +34,7 @@ server.use('/api/*', (req, res, next) => { // gateway for all following routes
   if(req.method.toLowerCase() != 'get' && !req.session.uid) {
       return res.status(401).send({error: 'Please log in to continue'})
   }
+  console.log('you are logged in')
   next()
 })
 
