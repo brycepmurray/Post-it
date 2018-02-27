@@ -5,23 +5,23 @@ var PostComment = require('../models/comment')
 var router = require('express').Router()
 
 // Get all Users
-router.get('/users', getAllUsers)
-// Get one User
-router.get('/users/:id', getOneUser)
-// Create a User
-router.post('/users', createUser)
-// Delete a User
-router.delete('/users/:id', deleteUser)
-// Update a User
-router.put('/users/:id', updateUser)
-// Get a post by user
-router.get('/users/:id/posts/:post_id', getPostByUser)
-// Get posts by user
-router.get('/users/:id/posts/', getPostsByUser)
-// Get a comment by user
-router.get('/users/:id/posts/:post_id/comments/:comment_id', getCommentByUser)
-// Get comments by user
-router.get('/users/:id/posts/:post_id/comments/', getCommentsByUser)
+// router.get('/users', getAllUsers)
+// // Get one User
+// router.get('/users/:id', getOneUser)
+// // Create a User
+// router.post('/users', createUser)
+// // Delete a User
+// router.delete('/users/:id', deleteUser)
+// // Update a User
+// router.put('/users/:id', updateUser)
+// // Get a post by user
+// router.get('/users/:id/posts/:post_id', getPostByUser)
+// // Get posts by user
+// router.get('/users/:id/posts/', getPostsByUser)
+// // Get a comment by user
+// router.get('/users/:id/posts/:post_id/comments/:comment_id', getCommentByUser)
+// // Get comments by user
+// router.get('/users/:id/posts/:post_id/comments/', getCommentsByUser)
 
 function getAllUsers(req, res, next) {
   User.find(req.query)
