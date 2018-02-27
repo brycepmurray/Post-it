@@ -15,7 +15,16 @@ var userRoutes = require('./server-assets/routes/userRoutes')
 var postRoutes = require('./server-assets/routes/postRoutes')
 var commentRoutes = require('./server-assets/routes/commentRoutes')
 
-server.use(cors())
+var whitelist = ['http://localhost:8080']
+var corsOptions = {
+	origin: function (origin, callback) {
+		var originIsWhitelisted = whitelist.indexOf(origin) !== -1
+		callback(null, originIsWhitelisted)
+	},
+	credentials: true
+}
+
+server.use(cors(corsOptions))
 server.use(session)
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
@@ -34,6 +43,7 @@ server.use('/api/*', (req, res, next) => { // gateway for all following routes
   if(req.method.toLowerCase() != 'get' && !req.session.uid) {
       return res.status(401).send({error: 'Please log in to continue'})
   }
+  console.log('you are logged in')
   next()
 })
 

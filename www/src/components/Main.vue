@@ -77,7 +77,7 @@
         data() {
             return {
                 newPostData: {
-                    userId: "5a90a16cc0112e197c234788",
+                    userId: "",
                     userName: ""
                 }
             }
