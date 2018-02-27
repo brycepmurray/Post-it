@@ -45,32 +45,31 @@
             </div>
           </div>
         </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>
-  export default {
-    mounted() {
-      $(function () {
-        $('[data-toggle="popover"]').popover()
-      })
-    },
-    data() {
-      return {
-        loginForm: {
-          email: "",
-          password: "",
+    export default {
+        mounted() {
+            $(function () {
+                $('[data-toggle="popover"]').popover()
+            })
         },
-        registerForm: {
-          name: "",
-          email: "",
-          password: "",
-          photoUrl: ""
-        }
-      }
-    },
+        data() {
+            return {
+                loginForm: {
+                    email: "",
+                    password: "",
+                },
+                registerForm: {
+                    name: "",
+                    email: "",
+                    password: "",
+                    photoUrl: ""
+                }
+            }
+            console.log(registerForm)
+      },
     methods: {
       createUser() {
         console.log("Am I Here?", this.registerForm)
@@ -87,41 +86,40 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .navBar {
-    max-height: 5rem;
-    box-shadow: 0px 0px 3px 6px rgba(121, 119, 119, 0.363)
-  }
+    .navBar {
+        max-height: 5rem;
+        box-shadow: 0px 0px 3px 6px rgba(121, 119, 119, 0.363)
+    }
 
-  .logo {
-    align-items: center;
-    display: flex;
-  }
+    .logo {
+        align-items: center;
+        display: flex;
+    }
 
-  .resizeLogo {
-    height: 100%;
-    max-width: 5rem;
-    height: 5rem;
-    width: 5rem
-  }
+    .resizeLogo {
+        height: 100%;
+        max-width: 5rem;
+        height: 5rem;
+        width: 5rem
+    }
 
-  .profileInfo {
-    justify-content: flex-end;
-    display: flex;
-    align-items: center
-  }
+    .profileInfo {
+        justify-content: flex-end;
+        display: flex;
+        align-items: center
+    }
 
-  .title {
-    font-size: 35px;
-    align-self: center;
-  }
+    .title {
+        font-size: 35px;
+        align-self: center;
+    }
 
-  .body {
-    background: rgba(3, 3, 3, 0.85);
-    color: aliceblue;
-  }
+    .body {
+        background: rgba(3, 3, 3, 0.85);
+        color: aliceblue;
+    }
 
-  .modal-title {
-    color: black;
-  }
-
+    .modal-title {
+        color: black;
+    }
 </style>
