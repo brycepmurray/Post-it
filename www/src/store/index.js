@@ -26,11 +26,15 @@ export default new vuex.Store({
         users: [],
         user: {},
         posts: [],
-        comments: []
+        comments: [],
+        userPosts:[]
     },
     mutations: {
         setPosts(state, payload) {
             state.posts = payload
+        },
+        setUserPosts(state, payload) {
+            state.userPosts = payload
         },
         addPost(state, payload) {
             state.posts.push(payload)
@@ -111,6 +115,16 @@ export default new vuex.Store({
             api.get('posts')
                 .then(res => {
                     commit('setPosts', res.data)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        },
+        getUserPosts({ commit, dispatch }, payload) {
+            api.get('users/:userId/posts')
+                .then(res => {
+                    console.log(res.data)
+                    commit('setUserPosts', res.data)
                 })
                 .catch(err => {
                     console.log(err)

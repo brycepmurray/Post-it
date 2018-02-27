@@ -17,7 +17,7 @@ var router = require('express').Router()
 // // Get a post by user
 // router.get('/users/:id/posts/:post_id', getPostByUser)
 // // Get posts by user
-// router.get('/users/:id/posts/', getPostsByUser)
+ router.get('/users/:id/posts/', getPostsByUser)
 // // Get a comment by user
 // router.get('/users/:id/posts/:post_id/comments/:comment_id', getCommentByUser)
 // // Get comments by user

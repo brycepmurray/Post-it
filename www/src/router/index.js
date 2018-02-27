@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// @ts-ignore
 import Main from '@/components/Main'
+// @ts-ignore
 import UserPosts from '@/components/UserPosts'
 
 
