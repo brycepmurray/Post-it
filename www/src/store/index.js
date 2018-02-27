@@ -103,7 +103,6 @@ export default new vuex.Store({
         //API
         addPost({ commit, dispatch }, payload) {
             console.log("this is our object:", payload)
-            debugger
             api.post('posts', payload)
                 .then(res => {
                     console.log("how about here?", res)
