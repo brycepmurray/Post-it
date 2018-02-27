@@ -9,13 +9,13 @@
       </div>
       <div class="col-lg-6 col-sm-12 profileInfo">
         <button type="button" class="btn btn-dark" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true"
-          title="Sign In" data-content='<form @submit="login">
-            <input v-model="loginForm.email" type=“text” name=“email” placeholder=email id=“”>
-            <input v-model="loginForm.password" type=“text” name=“password” placeholder=password id=“”> 
-            <button class="btn btn-success" type="submit">
-                Sign In
-            </button>
-            </form>'>Sign In</button>
+          title="Sign In" data-content=''>Sign In</button> <form @submit.prevent="login">
+          <input v-model="loginForm.email" type=“email” name=“email” placeholder=email>
+          <input v-model="loginForm.password" type=“text” name=“password” placeholder=password> 
+          <button class="btn btn-success" type="submit">
+              Login
+          </button>
+          </form>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">
                 Register
             </button>

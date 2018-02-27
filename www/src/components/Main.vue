@@ -77,8 +77,8 @@
         data() {
             return {
                 newPostData: {
-                    userId: "",
-                    userName: ""
+                    userId: '',
+                    userName: ''
                 }
             }
         },
@@ -91,9 +91,9 @@
                 this.$store.dispatch('getPosts', user)
             },
             addPost(newPostData) {
-                console.log('active user:', this.activeUser._id)
-                newPostData.userId = this.activeUser._id
-                    // newPostData.userName = this.activeUser.name
+              this.newPostData.userId = this.user._id
+              this.newPostData.userName = this.user.name
+              console.log('active user:', this.user._id)
                 this.$store.dispatch('addPost', this.newPostData)
                 console.log("this is before the index:", this.newPostData)
             },
@@ -102,11 +102,11 @@
             // }
         },
         computed: {
-            activeUser() {
+            // activeUser() {
+            //     return this.$store.state.user
+            // },
+            user() {
                 return this.$store.state.user
-            },
-            users() {
-                return this.$store.state.users
             },
             posts() {
                 return this.$store.state.posts

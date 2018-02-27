@@ -2,7 +2,7 @@
   <div class="col-lg-3 col-sm-12 card p-2">
     <h4>{{post.title}}</h4>
     <!-- v-if="post.userId == user.id" NEED TO LINK POST USERID TO USER.NAME -->
-    <p>By: Batman |
+    <p>By: {{user.name}} |
       <i>Date Posted: {{post.createdAt}}</i>
     </p>
     <img class="card-img-top" :src="post.imgUrl" alt="">
@@ -111,7 +111,7 @@
             }
         },
         computed: {
-            users() {
+            user() {
                 return this.$store.state.user
             },
             comments() {
