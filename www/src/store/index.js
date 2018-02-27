@@ -3,16 +3,20 @@
 import vue from 'vue'
 import vuex from 'vuex'
 import axios from 'axios'
+import router from "../router"
 
 var api = axios.create({
     baseURL: '//localhost:3000/api/',
-    timeout: 3000
+    timeout: 3000,
+    withCredentials: true
 })
 
 var auth = axios.create({
     baseURL: '//localhost:3000/auth/',
-    timeout: 3000
+    timeout: 3000,
+    withCredentials: true
 })
+
 
 vue.use(vuex)
 
@@ -39,6 +43,9 @@ export default new vuex.Store({
         },
         setUser(state, user) {
             state.user = user
+        },
+        resetUser(state, payload) {
+            state.user = {}
         },
         addLikes(state, payload) {
             payload = state.posts.find(post => post._id == payload._id)
@@ -79,7 +86,16 @@ export default new vuex.Store({
                     commit('handleError', err)
                 })
         },
-
+        authenticate({commit, dispatch}){
+            auth.get('authenticate')
+                .then(res=>{
+                    console.log(res.data)
+                  commit('setUser', res.data)
+                })
+                .catch(err=>{
+                  console.error(err);
+                })
+          }, 
         addPost({ commit, dispatch }, payload) {
             console.log("this is our object:", payload)
             api.post('posts', payload)
@@ -177,6 +193,17 @@ export default new vuex.Store({
                 .catch(err => {
                     console.log(err)
                 })
-        }
+        },
+        logout({ commit, dispatch }, payload) {
+            auth.delete('logout', payload)
+                .then(res => {
+                    commit('resetUser', res.data.data)
+                    router.push({ name: 'Main' })
+                    console.log(res)
+                })
+                .catch(err => {
+                    commit('handleError', err)
+                })
+        },
     }
 })
