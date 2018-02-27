@@ -10,12 +10,12 @@
       </div>
     </div> -->
     <div class="container-fluid fillPage">
-      <div class="row justify-content-around">
+      <div class="row justify-center justify-start">
         <Post v-for="post in orderedPosts" :post="post"></Post>
       </div>
       <div class="row flex-row-reverse">
         <div class="col-lg-2 col-sm-2 addPostCol">
-          <button class="btn btn-dark addPost" data-toggle="modal" data-target="#addPost">
+          <button class="btn btn-dark addPost fixed-bottom" data-toggle="modal" data-target="#addPost">
             <i class="fas fa-plus fa-4x"></i>
           </button>
           <!-- Modal -->
@@ -138,7 +138,10 @@
         color: aliceblue;
         opacity: .8;
         transition: all .3s linear;
-        border-radius: 20px
+        border-radius: 20px;
+        left: auto;
+        bottom: 10px;
+        right: 10px;
     }
     
     .addPost:hover {

@@ -123,8 +123,8 @@
 <style>
     .card {
         margin-top: 2.5rem;
-        margin-right: .5rem;
-        margin-left: .5rem;
+        margin-right: 3.0rem;
+        margin-left: 3.0rem;
         box-shadow: 6px 6px 8px 2px rgba(109, 106, 106, 0.815);
         border-radius: 20px
     }
