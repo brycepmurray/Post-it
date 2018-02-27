@@ -45,19 +45,19 @@ export default new vuex.Store({
         setUsers(state, payload) {
             state.users = payload
         },
-        setUser(state, user) {
-            state.user = user
+        setUser(state, payload) {
+            state.user = payload
         },
         resetUser(state, payload) {
             state.user = {}
         },
         addLikes(state, payload) {
             payload = state.posts.find(post => post._id == payload._id)
-                // state.posts = payload
+            // state.posts = payload
         },
         dislikes(state, payload) {
             payload = state.posts.find(post => post._id == payload._id)
-                // state.posts = payload
+            // state.posts = payload
         },
         setCommentsByPost(state, payload) {
             state.comments = payload
@@ -65,7 +65,7 @@ export default new vuex.Store({
     },
 
     actions: {
-
+        //AUTH
         createUser({ commit, dispatch }, payload) {
             auth.post('register', payload)
                 .then(res => {
@@ -76,13 +76,12 @@ export default new vuex.Store({
                 .catch(err => {
                     commit('handleError', err)
                 })
-
         },
 
         login({ commit, dispatch }, payload) {
             auth.post('login', payload)
                 .then(res => {
-                    commit('setUser', res.data.data)
+                    commit('setUser', res.data)
                     router.push({ name: 'Main' })
                     console.log(res)
                 })
@@ -90,18 +89,21 @@ export default new vuex.Store({
                     commit('handleError', err)
                 })
         },
-        authenticate({commit, dispatch}){
+        authenticate({ commit, dispatch }) {
             auth.get('authenticate')
-                .then(res=>{
+                .then(res => {
                     console.log(res.data)
-                  commit('setUser', res.data)
+                    commit('setUser', res.data)
                 })
-                .catch(err=>{
-                  console.error(err);
+                .catch(err => {
+                    console.error(err);
                 })
-          }, 
+        },
+
+        //API
         addPost({ commit, dispatch }, payload) {
             console.log("this is our object:", payload)
+            debugger
             api.post('posts', payload)
                 .then(res => {
                     console.log("how about here?", res)
