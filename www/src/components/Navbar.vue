@@ -46,12 +46,14 @@
           </div>
         </div>
     </div>
+    </div>
+  </div>
 </template>
 
 <script>
     export default {
         mounted() {
-            $(function () {
+            $(function() {
                 $('[data-toggle="popover"]').popover()
             })
         },
@@ -69,19 +71,18 @@
                 }
             }
             console.log(registerForm)
-      },
-    methods: {
-      createUser() {
-        console.log("Am I Here?", this.registerForm)
-        this.$store.dispatch('createUser', this.registerForm)
-      },
+        },
+        methods: {
+            createUser() {
+                console.log("Am I Here?", this.registerForm)
+                this.$store.dispatch('createUser', this.registerForm)
+            },
 
-      login() {
-        this.$store.dispatch('login', this.loginForm)
-      },
+            login() {
+                this.$store.dispatch('login', this.loginForm)
+            },
+        }
     }
-  }
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -90,35 +91,35 @@
         max-height: 5rem;
         box-shadow: 0px 0px 3px 6px rgba(121, 119, 119, 0.363)
     }
-
+    
     .logo {
         align-items: center;
         display: flex;
     }
-
+    
     .resizeLogo {
         height: 100%;
         max-width: 5rem;
         height: 5rem;
         width: 5rem
     }
-
+    
     .profileInfo {
         justify-content: flex-end;
         display: flex;
         align-items: center
     }
-
+    
     .title {
         font-size: 35px;
         align-self: center;
     }
-
+    
     .body {
         background: rgba(3, 3, 3, 0.85);
         color: aliceblue;
     }
-
+    
     .modal-title {
         color: black;
     }
