@@ -140,8 +140,8 @@
         transition: all .3s linear;
         border-radius: 20px;
         left: auto;
-        bottom: 10px;
-        right: 10px;
+        bottom: 20px;
+        right: 20px;
     }
     
     .addPost:hover {
