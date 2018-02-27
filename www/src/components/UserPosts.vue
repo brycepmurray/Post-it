@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <!-- <Navbar></Navbar> -->
+    <Navbar></Navbar>
 
     <!-- <h1>{{activeUser.name}}</h1>
 
@@ -9,9 +9,10 @@
         <p>{{user.name}}</p>
       </div>
     </div> -->
+    <div>{{user.name}}</div>
     <div class="container-fluid fillPage">
-      <div class="row justify-center justify-start">
-        <Post v-for="post in orderedPosts" :post="post"></Post>
+      <div class="row justify-center justify-start" v-if="posts.length > 0">
+        <Post v-for="post in posts" :post="post"></Post> <!-- orderedPosts-->
       </div>
       <div class="row flex-row-reverse">
         <div class="col-lg-2 col-sm-2 addPostCol">
@@ -57,12 +58,6 @@
         </div>
       </div>
     </div>
-
-
-
-
-
-
   </div>
 </template>
 
@@ -71,11 +66,9 @@
     import Post from './Post.vue'
     import lodash from 'lodash'
     export default {
-        // mounted() {
-        //   this.$store.dispatch('getUsers')
-        // },
         data() {
             return {
+                firedRequest:false,
                 newPostData: {
                     userId: "",
                     userName: ""
@@ -83,30 +76,33 @@
             }
         },
         components: {
-            // Navbar,
+            Navbar,
             Post
         },
+        mounted(){
+            
+           },
         methods: {
-            getUserPosts(user) {
-                this.$store.dispatch('getUserPosts', user)
-            },
             addPost(newPostData) {
                 console.log('active user:', this.activeUser._id)
                 newPostData.userId = this.activeUser._id
                     // newPostData.userName = this.activeUser.name
                 this.$store.dispatch('addPost', this.newPostData)
                 console.log("this is before the index:", this.newPostData)
-            },
-            // setActiveUser(user) {
-            //   this.$store.dispatch('setUser', user)
-            // }
+            }
         },
         computed: {
             activeUser() {
                 return this.$store.state.user
             },
-            users() {
-                return this.$store.state.users
+            user() {
+              var user = this.$store.state.user
+                if(!this.firedRequest && user._id){ 
+                  this.firedRequest = true
+                  console.log('getting user posts',user)
+                  this.$store.dispatch('getUserPosts', user)
+                }
+                return user
             },
             posts() {
                 return this.$store.state.userPosts
@@ -114,10 +110,10 @@
             // comments() {
             //   return this.$store.state.comments
             // },
-            orderedPosts() {
-                var orderPosts = _.orderBy(this.posts, ['likes', 'dislikes'], ['asc', 'desc'])
-                return orderPosts.reverse()
-            }
+            // orderedPosts() {
+            //     var orderPosts = _.orderBy(this.posts, ['likes', 'dislikes'], ['asc', 'desc'])
+            //     return orderPosts.reverse()
+            // }
         }
     }
 </script>

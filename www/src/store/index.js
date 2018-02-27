@@ -27,14 +27,14 @@ export default new vuex.Store({
         user: {},
         posts: [],
         comments: [],
-        userPosts:[]
+        userPosts: []
     },
     mutations: {
         setPosts(state, payload) {
             state.posts = payload
         },
         setUserPosts(state, payload) {
-            state.userPosts = payload
+            vue.set(state, 'userPosts', payload)
         },
         addPost(state, payload) {
             state.posts.push(payload)
@@ -92,7 +92,7 @@ export default new vuex.Store({
         authenticate({ commit, dispatch }) {
             auth.get('authenticate')
                 .then(res => {
-                    console.log(res.data)
+                    console.log("You are signed in",res.data)
                     commit('setUser', res.data)
                 })
                 .catch(err => {
@@ -123,9 +123,11 @@ export default new vuex.Store({
                 })
         },
         getUserPosts({ commit, dispatch }, payload) {
-            api.get('users/:userId/posts')
+            console.log('Here', payload)
+            var userId = payload._id
+            api.get(`users/${userId}/posts`)
                 .then(res => {
-                    console.log(res.data)
+                    console.log('UserPosts', res.data)
                     commit('setUserPosts', res.data)
                 })
                 .catch(err => {
