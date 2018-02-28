@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <Navbar></Navbar>
+    <UserPostsNavbar :user="user" :posts="posts"></userPostsNavbar>
 
     <!-- <h1>{{activeUser.name}}</h1>
 
@@ -9,7 +9,7 @@
         <p>{{user.name}}</p>
       </div>
     </div> -->
-    <div>{{user.name}}</div>
+    <div class="d-none">{{user.name}}</div><!--This is required to call the user computed prop-->
     <div class="container-fluid fillPage">
       <div class="row justify-center justify-start" v-if="posts.length > 0">
         <Post v-for="post in posts" :post="post"></Post> <!-- orderedPosts-->
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-    import Navbar from './Navbar.vue'
+    import UserPostsNavbar from './UserPostsNavbar.vue'
     import Post from './Post.vue'
     import lodash from 'lodash'
     export default {
@@ -76,7 +76,7 @@
             }
         },
         components: {
-            Navbar,
+            UserPostsNavbar,
             Post
         },
         mounted(){
@@ -96,13 +96,14 @@
                 return this.$store.state.user
             },
             user() {
-              var user = this.$store.state.user
-                if(!this.firedRequest && user._id){ 
-                  this.firedRequest = true
-                  console.log('getting user posts',user)
-                  this.$store.dispatch('getUserPosts', user)
-                }
-                return user
+              return this.$route.params.userId
+              // var user = this.$store.state.user
+              //   if(!this.firedRequest && user._id){ 
+              //     this.firedRequest = true
+              //     console.log('getting user posts',user)
+              //     this.$store.dispatch('getUserPosts', user)
+              //   }
+              
             },
             posts() {
                 return this.$store.state.userPosts
