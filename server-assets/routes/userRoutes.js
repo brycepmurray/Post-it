@@ -7,7 +7,7 @@ var router = require('express').Router()
 // Get all Users
 // router.get('/users', getAllUsers)
 // // Get one User
-// router.get('/users/:id', getOneUser)
+router.get('/users/:id', getOneUser)
 // // Create a User
 // router.post('/users', createUser)
 // // Delete a User
