@@ -1,7 +1,7 @@
 <template>
     <div class="col-lg-3 col-sm-12 card p-2">
         <h4>{{post.title}}</h4>
-        <p>By: {{post.userName}} |
+        <p><router-link :to="{name: 'UserPosts', params: {userId: post.userId}}">By: {{post.userName}}</router-link> |
             <i>Date Posted: {{post.createdAt}}</i>
         </p>
         <img class="card-img-top" :src="post.imgUrl" alt="">
